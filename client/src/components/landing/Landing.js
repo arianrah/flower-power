@@ -28,7 +28,7 @@ import {
 export default function Landing() {
   return (
     <Router>
-      <div>
+      <video src="./landing.mov">
         <AuthButton />
 
         <Switch>
@@ -39,7 +39,7 @@ export default function Landing() {
             <ProtectedPage />
           </PrivateRoute>
         </Switch>
-      </div>
+      </video>
     </Router>
   );
 }
