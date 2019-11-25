@@ -1,6 +1,7 @@
 import React from "react";
 import Dashboard from "../dashboard/Dashboard";
 import Signup from "./Signup";
+import Login from "./Login";
 import cookieSession from "cookie-session";
 import {
   BrowserRouter as Router,
@@ -17,8 +18,10 @@ export default function Landing() {
     <>
       <Router>
         <AuthButton />
-
         <Switch>
+          <Route path="/Login">
+            <Signup />
+          </Route>
           <Route path="/Signup">
             <Signup />
           </Route>
@@ -78,7 +81,7 @@ function LoginPage() {
     });
   };
   return (
-    <Link to="/">
+    <Link to="Login">
       <button onClick={login}>Log in</button>
     </Link>
   );

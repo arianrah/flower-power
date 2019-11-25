@@ -4,14 +4,6 @@ export default function Signup(props) {
   return (
     <form>
       <label>
-        First Name:
-        <input type="text" name="first-name" />
-      </label>
-      <label>
-        Last Name:
-        <input type="text" name="last-name" />
-      </label>
-      <label>
         Email:
         <input type="text" name="email" />
       </label>
