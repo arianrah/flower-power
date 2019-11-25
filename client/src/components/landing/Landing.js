@@ -1,6 +1,10 @@
 import React from "react";
 import Dashboard from "../dashboard/Dashboard";
-import Button from "../ButtonLanding";
+import styled from "styled-components";
+import landing_image from "./landing.jpg";
+import tablet_image from "./landing_tablet.jpg";
+import cell_image from "./landing_cell.jpg";
+// import Button from "../ButtonLanding";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,103 +29,43 @@ import {
 // login page? No! You're already logged in. Try it out,
 // and you'll see you go back to the page you visited
 // just *before* logging in, the public page.
+const Button = styled.button`
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  padding: 8px
+  color: #ffffff;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+const ButtonSection = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 75vh;
+`;
 
-export default function Landing() {
-  return (
-    <Router>
-      <div>
-        <AuthButton />
+const Bg = styled.div`
+  background-image: url(${landing_image});
+  min-height: 100vh;
+  max-width: 100vw;
+  background-position: center top;
+  backgroud-size: contain;
+  background-attachment: fixed;
 
-        <Switch>
-          <Route path="/public">
-            <PublicPage />
-          </Route>
-          <PrivateRoute path="/protected">
-            <ProtectedPage />
-          </PrivateRoute>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    fakeAuth.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    fakeAuth.isAuthenticated = false;
-    setTimeout(cb, 100);
+  @media screen and (max-width: 500px) {
+    background-image: url(${cell_image});
   }
-};
+`;
 
-function AuthButton() {
-  let history = useHistory();
-
-  return fakeAuth.isAuthenticated ? (
-    <>
-      <p>
-        Welcome!{" "}
-        <button
-          onClick={() => {
-            fakeAuth.signout(() => history.push("/"));
-          }}
-        >
-          Sign out
-        </button>
-      </p>
-      <Dashboard />
-    </>
-  ) : (
-    <>
-      <p>You are not logged in.</p>
-      <LoginPage />
-    </>
-  );
-}
-
-// A wrapper for <Route> that redirects to the login
-// screen if you're not yet authenticated.
-function PrivateRoute({ children, ...rest }) {
+export default function Landing(props) {
   return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        fakeAuth.isAuthenticated ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
+    <Bg>
+      <ButtonSection>
+        <Button>Login</Button>
+        <Button>Signup</Button>
+      </ButtonSection>
+    </Bg>
   );
 }
 
-function PublicPage() {
-  return <h3>Public</h3>;
-}
-
-function ProtectedPage() {
-  return <h3>Protected</h3>;
-}
-
-function LoginPage() {
-  let history = useHistory();
-  let location = useLocation();
-
-  let { from } = location.state || { from: { pathname: "/" } };
-  let login = () => {
-    fakeAuth.authenticate(() => {
-      history.replace(from);
-    });
-  };
-
-  return <Button onClick={login}>Log in</Button>;
-}
+//  <Button onClick={login}>Log in</Button>
