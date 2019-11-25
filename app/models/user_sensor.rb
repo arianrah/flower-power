@@ -1,0 +1,2 @@
+class UserSensor < ApplicationRecord
+end
