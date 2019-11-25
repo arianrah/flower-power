@@ -1,5 +1,6 @@
 import React from "react";
 import Dashboard from "../dashboard/Dashboard";
+import Button from "../ButtonLanding";
 import {
   BrowserRouter as Router,
   Switch,
@@ -122,5 +123,5 @@ function LoginPage() {
     });
   };
 
-  return <button onClick={login}>Log in</button>;
+  return <Button onClick={login}>Log in</Button>;
 }

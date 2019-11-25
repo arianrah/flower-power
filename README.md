@@ -29,7 +29,11 @@ In the other terminal, `cd` into `client`. Run `npm install`. Rename the `.env.e
 
 In the browser, you can click on the button and see the data get loaded.
 
-If this doesn't work, please message me!
+cd into the components directory and run the following commands
+`npx create-react-app style-with-styled-components`
+`cd style-with-styled-components/`
+`npm i styled-components`
+`npm install styled-components --save`
 
 ## Next steps
 
@@ -75,7 +79,7 @@ Once it's deployed, you can run the following commands to manage your app:
 
 There are other commands, but these are good to get you started!
 
-To make your app work properly with React Router (if you end up using it) on Heroku, I've added a special route to the `routes.rb` file (`get '*path' ... `).
+To make your app work properly with React Router (if you end up using it) on Heroku, I've added a special route to the `routes.rb` file (`get '*path' ...`).
 
 ## Contact
 
