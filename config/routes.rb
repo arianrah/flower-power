@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   namespace :api do # /api/data
 
     get '/data' => 'tests#index'
-
-    get '/users' => 'users#index' # /api/users
+    get '/users' => 'users#index'
+    post '/register' => 'users#create' # /api/users
     resources :users 
 
   end
