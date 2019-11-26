@@ -49,93 +49,97 @@ export default function Landing() {
   return (
     <>
       <Router>
-        <Bg>
-          <ButtonSection>
-            <AuthButton />
-
-            <Switch>
-              <Route path="/Login">
-                <Signup />
-              </Route>
-              <Route path="/Signup">
-                <Signup />
-              </Route>
-            </Switch>
-          </ButtonSection>
-        </Bg>
+        {/* <AuthButton /> */}
+        <ul>
+          <li>
+            <Link to="/Login">Login</Link>
+          </li>
+          <li>
+            <Link to="/Signup">Signup</Link>
+          </li>
+        </ul>
+        <Switch>
+          <Route path="/Login">
+            <Login />
+          </Route>
+          <Route path="/Signup">
+            <Signup />
+          </Route>
+        </Switch>
       </Router>
     </>
   );
 }
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    fakeAuth.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    fakeAuth.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
-};
+// const fakeAuth = {
+//   isAuthenticated: false,
+//   authenticate(cb) {
+//     fakeAuth.isAuthenticated = true;
+//     setTimeout(cb, 100); // fake async
+//   },
+//   signout(cb) {
+//     fakeAuth.isAuthenticated = false;
+//     setTimeout(cb, 100);
+//   }
+// };
 
-function AuthButton() {
-  let history = useHistory();
+// function AuthButton() {
+//   let history = useHistory();
 
-  return fakeAuth.isAuthenticated ? (
-    <>
-      <p>
-        Welcome!{" "}
-        <Button
-          onClick={() => {
-            fakeAuth.signout(() => history.push("/"));
-          }}
-        >
-          Sign out
-        </Button>
-      </p>
-      <Dashboard />
-    </>
-  ) : (
-    <>
-      <LoginPage />
-      <RegisterPage />
-    </>
-  );
-}
+//   return fakeAuth.isAuthenticated ? (
+//     <>
+//       <p>
+//         Welcome!{" "}
+//         <button
+//           onClick={() => {
+//             fakeAuth.signout(() => history.push("/"));
+//           }}
+//         >
+//           Sign out
+//         </button>
+//       </p>
+//       <Dashboard />
+//     </>
+//   ) : (
+//     <>
+//       <p>You are not logged in.</p>
+//       <LoginPage />
+//       <RegisterPage />
+//     </>
+//   );
+// }
 
-function LoginPage() {
-  let history = useHistory();
-  let location = useLocation();
+// function LoginPage() {
+//   let history = useHistory();
+//   let location = useLocation();
 
-  let { from } = location.state || { from: { pathname: "/" } };
-  let login = () => {
-    fakeAuth.authenticate(() => {
-      history.replace(from);
-      // let user = request.session;
-    });
-  };
-  return (
-    <Link to="Login">
-      <Button onClick={login}>Log in</Button>
-    </Link>
-  );
-}
+//   let { from } = location.state || { from: { pathname: "/" } };
+//   let login = () => {
+//     fakeAuth.authenticate(() => {
+//       history.replace(from);
+//       // let user = request.session;
+//     });
+//   };
+//   return (
+//     <Link to="Login">
+//       <button>Log in</button>
+//     </Link>
+//   );
+// }
 
-function RegisterPage() {
-  let history = useHistory();
-  let location = useLocation();
+// function RegisterPage() {
+//   let history = useHistory();
+//   let location = useLocation();
 
-  let { from } = location.state || { from: { pathname: "/" } };
-  let register = () => {
-    fakeAuth.authenticate(() => {
-      history.replace(from);
-    });
-  };
-  return (
-    <Link to="Signup">
-      <Button>Register</Button>
-    </Link>
-  );
-}
+//   let { from } = location.state || { from: { pathname: "/" } };
+//   let register = () => {
+//     fakeAuth.authenticate(() => {
+//       history.replace(from);
+//     });
+//   };
+//   return (
+//     <Link to="Signup">
+//       <button>Register</button>
+//     </Link>
+//   );
+// }

@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 2019_11_25_214703) do
   end
 
   create_table "user_sensors", force: :cascade do |t|
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
