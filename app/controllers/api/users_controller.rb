@@ -1,9 +1,9 @@
 class Api::UsersController < ApplicationController
   def index
     users = User.all
-    puts users.inspect
+    # puts users.inspect
     render :json => {
-      message: "users!"
+      users
     }
   end
   def create

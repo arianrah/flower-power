@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
     get '/data' => 'tests#index'
     get '/users' => 'users#index'
-    post '/register' => 'users#create' # /api/users
+    post '/register' => 'users#create'
+    get '/user-sensor-data' => 'user_sensors#index'
+    post '/sensor-data' => 'user_sensors#create'
     resources :users 
 
   end
