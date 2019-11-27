@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
     users = User.all
     # puts users.inspect
     render :json => {
-      users
+      data: User.all
     }
   end
   def create

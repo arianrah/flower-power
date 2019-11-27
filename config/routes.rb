@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     get '/data' => 'tests#index'
     get '/users' => 'users#index'
     post '/register' => 'users#create'
-    get '/user-sensor-data' => 'user_sensors#index'
-    post '/sensor-data' => 'user_sensors#create'
+    get '/user-sensors' => 'user_sensors#index'
+    post '/new-user-sensor' => 'user_sensors#create'
     resources :users 
 
   end
