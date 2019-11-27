@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import Button from "./ButtonLanding";
+import InputLabel from "./InputLabel";
 
-const Button = styled.button`
-  background-color: green;
-`;
-const FormGroup = styled.div`
+const SignupComponents = styled.div`
   display: flex;
-`;
-const FormControl = styled.input`
-  color: grey;
-`;
-const ControlLabel = styled.p`
-  background-color: blue;
+  padding-top: 60vh;
 `;
 
 export default function Signup(props) {
@@ -21,67 +14,48 @@ export default function Signup(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Handled submit..");
-    console.log(email);
-    axios({
-      method: "post",
-      url: "/api/register",
-      data: {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        password
-      }
-    });
-  }
-
   return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
-            autoFocus
-            type="email"
+    <div>
+      <form onSubmit={event => event.preventDefault()}>
+        <SignupComponents>
+          <InputLabel controlId="email" message={"email"} />
+          <input
+            type="text"
+            name="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={event => setEmail(event.target.value)}
           />
-        </FormGroup>
-        <FormGroup controlId="password">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
+
+          <InputLabel controlId="password" message={"password"} />
+          <input
+            type="text"
+            name="password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
+            onChange={event => setPassword(event.target.value)}
           />
-        </FormGroup>
-        <FormGroup controlId="firstName">
-          <ControlLabel>First Name</ControlLabel>
-          <FormControl
-            autoFocus
-            type="first-name"
+
+          <InputLabel controlId="firstName" message={"first name"} />
+          <input
+            type="text"
+            name="first-name"
             value={firstName}
-            onChange={e => setFirstName(e.target.value)}
+            onChange={event => setFirstName(event.target.value)}
           />
-        </FormGroup>
-        <FormGroup controlId="lastName">
-          <ControlLabel>Last Name</ControlLabel>
-          <FormControl
-            autoFocus
-            type="last-name"
+
+          <InputLabel controlId="lastName" message={"last name"} />
+          <input
+            type="text"
+            name="last-name"
             value={lastName}
-            onChange={e => setLastName(e.target.value)}
+            onChange={event => setLastName(event.target.value)}
           />
-        </FormGroup>
-        <Button block disabled={!validateForm()} type="submit">
-          Login
-        </Button>
+
+          <Button
+            onClick={() => props.onSignup(email, password, firstName, lastName)}
+          >
+            Signup
+          </Button>
+        </SignupComponents>
       </form>
     </div>
   );
