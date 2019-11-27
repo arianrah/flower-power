@@ -3,6 +3,7 @@ import Dashboard from "../dashboard/Dashboard";
 import styled from "styled-components";
 import Signup from "./Signup";
 import Login from "./Login";
+import useApplicationData from "../../hooks/useApplicationData";
 
 //import cookieSession from "cookie-session";
 import landing_image from "./landing.jpg";
@@ -37,6 +38,7 @@ const Bg = styled.div`
 `;
 
 export default function Landing(props) {
+  const { loginDBCall } = useApplicationData();
   const { mode, transition, back } = useVisualMode(LEADING);
 
   function login() {
@@ -45,12 +47,37 @@ export default function Landing(props) {
   function signup() {
     transition(SIGNUP);
   }
+  function loginCheck(email, password) {
+    // transition(CHECK);
+    console.log("inside loginCheck", email, password);
+    loginDBCall(email, password);
+  }
+
+  // function save(name, interviewer) {
+  //   const interview = {
+  //     student: name,
+  //     interviewer
+  //   };
+
+  //   transition(SAVING);
+
+  //   props
+  //     .bookInterview(props.id, interview)
+  //     .then(() => transition(SHOW))
+  //     .catch(error => transition(ERROR_SAVE, true));
+  // }
 
   return (
     <Fragment>
       <Bg>
         {mode === LEADING && <Leading onLogin={login} onSignup={signup} />}
-        {mode === LOGIN && <Login />}
+        {mode === LOGIN && (
+          <Login
+            email={props.email}
+            password={props.password}
+            onLogin={loginCheck}
+          />
+        )}
         {mode === SIGNUP && <Signup />}
       </Bg>
     </Fragment>
