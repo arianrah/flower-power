@@ -7,12 +7,6 @@ const SignupComponents = styled.div`
   display: flex;
   padding-top: 60vh;
 `;
-const FormGroup = styled.div`
-  display: flex;
-`;
-const FormControl = styled.input`
-  color: grey;
-`;
 
 export default function Signup(props) {
   const [email, setEmail] = useState("");
@@ -24,46 +18,43 @@ export default function Signup(props) {
     <div>
       <form onSubmit={event => event.preventDefault()}>
         <SignupComponents>
-          <InputLabel controlId="email" message={"email"}>
-            Email
-          </InputLabel>
-          <FormControl
+          <InputLabel controlId="email" message={"email"} />
+          <input
             type="text"
             name="email"
             value={email}
             onChange={event => setEmail(event.target.value)}
           />
 
-          <FormGroup controlId="password">
-            <InputLabel controlId="password" message={"password"}>
-              Password
-            </InputLabel>
-            <input
-              type="text"
-              name="password"
-              value={password}
-              onChange={event => setPassword(event.target.value)}
-            />
-          </FormGroup>
-          <FormGroup controlId="firstName">
-            <InputLabel>First Name</InputLabel>
-            <FormControl
-              type="text"
-              name="first-name"
-              value={firstName}
-              onChange={event => setFirstName(event.target.value)}
-            />
-          </FormGroup>
-          <FormGroup controlId="lastName">
-            <InputLabel>Last Name</InputLabel>
-            <FormControl
-              type="text"
-              name="last-name"
-              value={lastName}
-              onChange={event => setLastName(event.target.value)}
-            />
-          </FormGroup>
-          <Button type="submit">Signup</Button>
+          <InputLabel controlId="password" message={"password"} />
+          <input
+            type="text"
+            name="password"
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+          />
+
+          <InputLabel controlId="firstName" message={"first name"} />
+          <input
+            type="text"
+            name="first-name"
+            value={firstName}
+            onChange={event => setFirstName(event.target.value)}
+          />
+
+          <InputLabel controlId="lastName" message={"last name"} />
+          <input
+            type="text"
+            name="last-name"
+            value={lastName}
+            onChange={event => setLastName(event.target.value)}
+          />
+
+          <Button
+            onClick={() => props.onSignup(email, password, firstName, lastName)}
+          >
+            Signup
+          </Button>
         </SignupComponents>
       </form>
     </div>

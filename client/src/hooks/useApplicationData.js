@@ -21,6 +21,13 @@ export default function useApplicationData() {
   // }, []);
 
   function userSignup(firstName, lastName, email, password) {
+    console.log(
+      "Inside of the userSignup",
+      firstName,
+      lastName,
+      email,
+      password
+    );
     axios({
       method: "post",
       url: "/api/register",
