@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Signup from "./Signup";
 import Login from "./Login";
 import useApplicationData from "../../hooks/useApplicationData";
-
+import Plants from "../plants/Plants.js";
 //import cookieSession from "cookie-session";
 import landing_image from "./landing.jpg";
 import cell_image from "./landing_cell.jpg";
@@ -23,6 +23,7 @@ import Leading from "./Leading";
 const LEADING = "LEADING";
 const LOGIN = "LOGIN";
 const SIGNUP = "SIGNUP";
+const PLANT = "PLANT";
 
 const Bg = styled.div`
   background-image: url(${landing_image});
@@ -50,11 +51,13 @@ export default function Landing(props) {
 
   function signupData(email, password, firstName, lastName) {
     userSignup(email, password, firstName, lastName);
+    transition(PLANT);
   }
 
   function loginCheck(email, password) {
     // transition(CHECK);
     loginDBCall(email, password);
+    transition(PLANT);
   }
 
   // function save(name, interviewer) {
@@ -91,6 +94,7 @@ export default function Landing(props) {
             onSignup={signupData}
           />
         )}
+        {mode === PLANT && <Plants />}
       </Bg>
     </Fragment>
   );
