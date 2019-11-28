@@ -20,26 +20,29 @@ export default function useApplicationData() {
   //   });
   // }, []);
 
-  function userSignup(firstName, lastName, email, password) {
-    console.log(
-      "Inside of the userSignup",
-      firstName,
-      lastName,
-      email,
-      password
-    );
+  function userSignup(email, password, firstName, lastName) {
+    console.log("firs", firstName);
+    console.log("last", lastName);
+    console.log("email", email);
+    console.log("pass", password);
+    // console.log(
+    //   "Inside of the userSignup",
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   password
+    // );
     axios({
       method: "post",
       url: "/api/register",
       data: {
+        email: email,
         first_name: firstName,
         last_name: lastName,
-        email: email,
         password: password
       }
     });
   }
-
   function loginDBCall(email, password) {
     axios({
       method: "get",

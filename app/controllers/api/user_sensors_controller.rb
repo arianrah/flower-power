@@ -4,11 +4,16 @@ class Api::UserSensorsController < ApplicationController
       data: UserSensor.all
     }
   end
-  # def create
-  #   user_sensor = User_sensors.new(user_sensors_params)
-  # end
-  # private
-  # def user_sensor_params
-  #   params.require(:user_sensor_params).permit(:longitude, :latitude)
-  # end  
+  def create
+    p params
+    # p user_sensor_params
+    user_sensor = UserSensor.new(user_sensor_params)
+    user_sensor.save
+    # puts user_sensor
+    render json: {}
+  end
+  private
+  def user_sensor_params
+    params.require(:user_sensor).permit(:longitude, :latitude)
+  end  
 end
