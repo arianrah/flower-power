@@ -25,14 +25,14 @@ export default function Login(props) {
         <LoginComponents>
           <InputLabel controlId="email" message={"email"} />
           <input
-            type="text"
+            type="email"
             name="email"
             value={email}
             onChange={event => setEmail(event.target.value)}
           />
           <InputLabel controlId="password" message={"password"} />
           <input
-            type="text"
+            type="password"
             name="password"
             value={password}
             onChange={event => setPassword(event.target.value)}

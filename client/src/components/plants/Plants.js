@@ -25,7 +25,11 @@ const plantCardOrder = {
 
 export default function Plants() {
   const plants = props.map(plant => (
-    <PlantCard key={plant.id} name={plant.name} image={plant.image} />
+    <PlantCard 
+    key={plant.id}
+    name={plant.name}
+    image={plant.image} 
+    />
   ));
   return <ul style={plantCardOrder}>{plants}</ul>;
 }

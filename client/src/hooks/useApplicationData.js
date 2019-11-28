@@ -53,6 +53,17 @@ export default function useApplicationData() {
       }
     });
   }
+  function plantAddDB(name, image) {
+    console.log(`name: ${name}, image: ${image}`)
+    axios({
+      method: "post",
+      url: "/api/plants#new",
+      data: {
+        name:name,
+        image: image
+      }
+    })
+  }
 
-  return { loginDBCall, userSignup };
+  return { plantAddDB, loginDBCall, userSignup };
 }
