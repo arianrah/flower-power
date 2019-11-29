@@ -9,14 +9,13 @@ class Api::UsersController < ApplicationController
   
   def is_user
     user = User.find_by(email: session_params[:email])
-    puts user
     if user && user.authenticate(session_params[:password])
-      # response.set_cookie("appCookie", {value: user.id, path: '/'})
       user.generate_token
       render json: {
         token: user.token
       }
     else
+      puts 'NO STUFF'
       render json: { 
         status: 401,
         errors: ['no such user', 'verify credentials and try again or signup']

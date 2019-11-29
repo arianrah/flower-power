@@ -23,7 +23,7 @@ export default function useApplicationData() {
   // }, []);
 
   function userSignup(email, password, firstName, lastName) {
-    axios({
+    return axios({
       method: "post",
       url: "/api/register",
       data: {
@@ -39,11 +39,15 @@ export default function useApplicationData() {
       //   Authorization: "Token token=hello"
       // }
     }).then(response => {
-      localStorage.setItem("token", response.data.token);
+      const token = response.data.token;
+      if (response.data.status !== 401) {
+        localStorage.setItem("token", token);
+      }
+      return token;
     });
   }
   function loginDBCall(email, password) {
-    axios({
+    return axios({
       method: "post",
       url: "/api/login",
       data: {
@@ -53,7 +57,11 @@ export default function useApplicationData() {
         }
       }
     }).then(response => {
-      localStorage.setItem("token", response.data.token);
+      const token = response.data.token;
+      if (response.data.status !== 401) {
+        localStorage.setItem("token", token);
+      }
+      return token;
     });
   }
   function plantAddDB(name, image) {
