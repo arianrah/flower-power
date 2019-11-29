@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./ButtonLanding";
 import InputLabel from "./InputLabel";
+import InputFieldStyle from "./InputFieldStyle";
 
 const SignupComponents = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ export default function Signup(props) {
       <form onSubmit={event => event.preventDefault()}>
         <SignupComponents>
           <InputLabel controlId="email" message={"email"} />
-          <input
+          <InputFieldStyle
             type="email"
             name="email"
             value={email}
@@ -27,7 +28,7 @@ export default function Signup(props) {
           />
 
           <InputLabel controlId="password" message={"password"} />
-          <input
+          <InputFieldStyle
             type="password"
             name="password"
             value={password}
@@ -35,7 +36,7 @@ export default function Signup(props) {
           />
 
           <InputLabel controlId="firstName" message={"first name"} />
-          <input
+          <InputFieldStyle
             type="text"
             name="first-name"
             value={firstName}
@@ -43,7 +44,7 @@ export default function Signup(props) {
           />
 
           <InputLabel controlId="lastName" message={"last name"} />
-          <input
+          <InputFieldStyle
             type="text"
             name="last-name"
             value={lastName}
