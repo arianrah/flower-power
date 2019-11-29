@@ -9,15 +9,8 @@ class Api::UsersController < ApplicationController
   
   def is_user
     user = User.find_by(email: session_params[:email])
-    puts user
-
-    puts "hello trav"
     if user && user.authenticate(session_params[:password])
-
-      # response.set_cookie("appCookie", {value: user.id, path: '/'})
       user.generate_token
-      puts user.token
-      puts "hello trav"
       render json: {
         token: user.token
       }

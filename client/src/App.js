@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Landing from "./components/landing/Landing";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -15,13 +15,16 @@ import {
   useLocation
 } from "react-router-dom";
 
-const hasToken = function() {
-  return localStorage.getItem("token") ? <Dashboard /> : <Landing />;
-};
+// const hasToken = function() {
+//   return localStorage.getItem("token") ? <Dashboard /> : <Landing />;
+// };
 
 export default function Application(props) {
   // useEffect(() => {
   //   hasToken();
   // }, [localStorage.getItem("token")]);
-  return localStorage.getItem("token") ? <Dashboard /> : <Landing />;
+  const token = localStorage.getItem("token");
+  const [user, setUser] = useState(token);
+
+  return user ? <Dashboard /> : <Landing setUser={setUser} />;
 }

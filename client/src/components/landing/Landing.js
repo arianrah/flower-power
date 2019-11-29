@@ -50,24 +50,22 @@ export default function Landing(props) {
   }
 
   function signupData(email, password, firstName, lastName) {
-    userSignup(email, password, firstName, lastName);
-    let token = localStorage.getItem("token");
-    if (token) {
-      back();
-    } else {
-      transition(DASHBOARD);
-    }
+    userSignup(email, password, firstName, lastName).then(token => {
+      props.setUser(token);
+    });
+    // let token = localStorage.getItem("token");
+    // if (!token) {
+    //   back();
+    // } else {
+    //   transition(DASHBOARD);
+    // }
   }
 
   function loginCheck(email, password) {
     // transition(CHECK);
-    loginDBCall(email, password);
-    let token = localStorage.getItem("token");
-    if (token) {
-      back();
-    } else {
-      transition(DASHBOARD);
-    }
+    loginDBCall(email, password).then(token => {
+      props.setUser(token);
+    });
   }
 
   function addPlant(plantName, plantImage) {
