@@ -1,19 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./ButtonLanding";
-import InputLabel from "./InputLabel";
+import ButtonDiv from "./ButtonDiv";
 import InputFieldStyle from "./InputFieldStyle";
+import InputDiv from "./InputDiv";
 
 const LoginComponents = styled.div`
   display: flex;
   padding-top: 60vh;
   justify-content: space-evenly;
-`;
-
-const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 5vh;
 `;
 
 export default function Login(props) {
@@ -23,8 +18,7 @@ export default function Login(props) {
   return (
     <div>
       <form onSubmit={event => event.preventDefault()}>
-        <LoginComponents>
-          {/* <InputLabel controlId="email" message={"email"} /> */}
+        <InputDiv>
           <InputFieldStyle
             controlId="email"
             type="email"
@@ -42,7 +36,7 @@ export default function Login(props) {
             placeholder="password"
             onChange={event => setPassword(event.target.value)}
           />
-        </LoginComponents>
+        </InputDiv>
         <ButtonDiv>
           <Button onClick={() => props.onLogin(email, password)}>Login</Button>
         </ButtonDiv>

@@ -65,7 +65,6 @@ export default function Landing(props) {
     transition(DASHBOARD);
   }
 
-
   // function save(name, interviewer) {
   //   const interview = {
   //     student: name,
@@ -79,18 +78,18 @@ export default function Landing(props) {
   //     .then(() => transition(SHOW))
   //     .catch(error => transition(ERROR_SAVE, true));
   // }
-function addPlant(plantName,  plantImage) {
-  plantAddDB(plantName,  plantImage)
-}
-function plantInputPopUp(){
-  transition(PLANTADD)
-}
-// function addSensor(sensorName) {
-//   sensorAddDB(sensorName)
-// }
-// function sensorInputPopUp(){
-//   transition(SENSORADD)
-// }
+  function addPlant(plantName, plantImage) {
+    plantAddDB(plantName, plantImage);
+  }
+  function plantInputPopUp() {
+    transition(PLANTADD);
+  }
+  // function addSensor(sensorName) {
+  //   sensorAddDB(sensorName)
+  // }
+  // function sensorInputPopUp(){
+  //   transition(SENSORADD)
+  // }
   return (
     <Fragment>
       <Bg>
@@ -112,16 +111,16 @@ function plantInputPopUp(){
           />
         )}
         {mode === PLANT && <Plants />}
-        {mode === DASHBOARD && <Dashboard 
-          addPlant={plantInputPopUp}
-        />}
-        <h2>{mode},{PLANTADD}</h2>
-        {mode === PLANTADD && <PlantInput 
-          key={props.plantID}
-          plantName={props.plantName}
-          plantImage={props.plantImage}
-          addP={addPlant}
-        />}
+        {mode === DASHBOARD && <Dashboard addPlant={plantInputPopUp} />}
+
+        {mode === PLANTADD && (
+          <PlantInput
+            key={props.plantID}
+            plantName={props.plantName}
+            plantImage={props.plantImage}
+            addP={addPlant}
+          />
+        )}
       </Bg>
     </Fragment>
   );
