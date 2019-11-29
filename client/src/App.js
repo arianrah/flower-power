@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import Landing from "./components/landing/Landing";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -15,6 +15,13 @@ import {
   useLocation
 } from "react-router-dom";
 
+const hasToken = function() {
+  return localStorage.getItem("token") ? <Dashboard /> : <Landing />;
+};
+
 export default function Application(props) {
-  return <Landing />;
+  // useEffect(() => {
+  //   hasToken();
+  // }, [localStorage.getItem("token")]);
+  return localStorage.getItem("token") ? <Dashboard /> : <Landing />;
 }

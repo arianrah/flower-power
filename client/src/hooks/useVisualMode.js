@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 //This function manages the calls from the stack
 
@@ -13,10 +13,10 @@ export default function useVisualMode(initial) {
   }
   // The back function removes a move from the call stack
   function back() {
-    const historyClone = [...history];
-    transition(historyClone.pop());
-
-    setHistory(prev => [...prev, mode]);
+    if (history.length > 0) {
+      setMode(history[history.length - 1]);
+      setHistory(prev => [...prev.slice(0, -1)]);
+    }
   }
 
   return { mode, transition, back };

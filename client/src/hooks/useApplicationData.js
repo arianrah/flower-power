@@ -1,7 +1,9 @@
 // import { useEffect, useReducer } from "react";
+import React from "react";
 import axios from "axios";
 // import "components/Application.scss";
-
+// axios.defaults.headers.post["HTTP_AUTHORIZATION"] = "hello";
+// axios.defaults.headers.get["HTTP_AUTHORIZATION"] = "hello";
 export default function useApplicationData() {
   // useEffect(() => {
   //   Promise.all([
@@ -32,8 +34,11 @@ export default function useApplicationData() {
           password: password
         }
       }
+      // ,
+      // headers: {
+      //   Authorization: "Token token=hello"
+      // }
     }).then(response => {
-      console.log(response.data.token);
       localStorage.setItem("token", response.data.token);
     });
   }
@@ -52,15 +57,15 @@ export default function useApplicationData() {
     });
   }
   function plantAddDB(name, image) {
-    console.log(`name: ${name}, image: ${image}`)
+    console.log(`name: ${name}, image: ${image}`);
     axios({
       method: "post",
       url: "/api/plants#new",
       data: {
-        name:name,
+        name: name,
         image: image
       }
-    })
+    });
   }
   function sensorAddDB(name) {
     axios({
@@ -69,7 +74,7 @@ export default function useApplicationData() {
       data: {
         name: name
       }
-    })
+    });
   }
 
   return { plantAddDB, loginDBCall, userSignup, sensorAddDB };

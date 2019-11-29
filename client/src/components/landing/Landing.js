@@ -28,7 +28,6 @@ const SIGNUP = "SIGNUP";
 const PLANT = "PLANT";
 const DASHBOARD = "DASHBOARD";
 const PLANTADD = "PLANTADD";
-// const SENSORADD = "SENSORADD"
 
 const Bg = styled.div`
   background-image: url(${landing_image});
@@ -44,7 +43,12 @@ const Bg = styled.div`
 `;
 
 export default function Landing(props) {
-  const { plantAddDB, loginDBCall, userSignup } = useApplicationData();
+  const {
+    plantAddDB,
+    loginDBCall,
+    userSignup,
+    hasToken
+  } = useApplicationData();
   const { mode, transition, back } = useVisualMode(LEADING);
 
   function login() {
@@ -56,15 +60,24 @@ export default function Landing(props) {
 
   function signupData(email, password, firstName, lastName) {
     userSignup(email, password, firstName, lastName);
-    transition(PLANT);
+    let token = localStorage.getItem("token");
+    if (token) {
+      back();
+    } else {
+      transition(DASHBOARD);
+    }
   }
 
   function loginCheck(email, password) {
     // transition(CHECK);
     loginDBCall(email, password);
-    transition(DASHBOARD);
+    let token = localStorage.getItem("token");
+    if (!token) {
+      back();
+    } else {
+      transition(DASHBOARD);
+    }
   }
-
 
   // function save(name, interviewer) {
   //   const interview = {
@@ -79,18 +92,18 @@ export default function Landing(props) {
   //     .then(() => transition(SHOW))
   //     .catch(error => transition(ERROR_SAVE, true));
   // }
-function addPlant(plantName,  plantImage) {
-  plantAddDB(plantName,  plantImage)
-}
-function plantInputPopUp(){
-  transition(PLANTADD)
-}
-// function addSensor(sensorName) {
-//   sensorAddDB(sensorName)
-// }
-// function sensorInputPopUp(){
-//   transition(SENSORADD)
-// }
+  function addPlant(plantName, plantImage) {
+    plantAddDB(plantName, plantImage);
+  }
+  function plantInputPopUp() {
+    transition(PLANTADD);
+  }
+  // function addSensor(sensorName) {
+  //   sensorAddDB(sensorName)
+  // }
+  // function sensorInputPopUp(){
+  //   transition(SENSORADD)
+  // }
   return (
     <Fragment>
       <Bg>
@@ -112,16 +125,18 @@ function plantInputPopUp(){
           />
         )}
         {mode === PLANT && <Plants />}
-        {mode === DASHBOARD && <Dashboard 
-          addPlant={plantInputPopUp}
-        />}
-        <h2>{mode},{PLANTADD}</h2>
-        {mode === PLANTADD && <PlantInput 
-          key={props.plantID}
-          plantName={props.plantName}
-          plantImage={props.plantImage}
-          addP={addPlant}
-        />}
+        {mode === DASHBOARD && <Dashboard addPlant={plantInputPopUp} />}
+        <h2>
+          {mode},{PLANTADD}
+        </h2>
+        {mode === PLANTADD && (
+          <PlantInput
+            key={props.plantID}
+            plantName={props.plantName}
+            plantImage={props.plantImage}
+            addP={addPlant}
+          />
+        )}
       </Bg>
     </Fragment>
   );

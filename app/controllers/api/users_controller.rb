@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-
+  skip_before_action :authenticate, :only => [:create, :is_user, :destroy, :index]
   def index
     users = User.all
     render :json => {
@@ -12,7 +12,7 @@ class Api::UsersController < ApplicationController
     puts user
     if user && user.authenticate(session_params[:password])
       # response.set_cookie("appCookie", {value: user.id, path: '/'})
-      user.token = ([*('A'..'Z'),*('0'..'9')]-%w(0 1 I O)).sample(8).join
+      user.generate_token
       render json: {
         token: user.token
       }
@@ -27,19 +27,19 @@ class Api::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      user.token = ([*('A'..'Z'),*('0'..'9')]-%w(0 1 I O)).sample(8).join
+      user.generate_token
       render json: {
         token: user.token
       }
     else
       render json: {
-        status: 500
+        status: 401
       }
     end
   end
 
   def destroy
-    reset_session
+    current_user.update(token: nil)
     render json: {
       status: 200
     }
