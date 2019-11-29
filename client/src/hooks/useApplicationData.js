@@ -53,7 +53,9 @@ export default function useApplicationData() {
         }
       }
     }).then(response => {
-      localStorage.setItem("token", response.data.token);
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+      }
     });
   }
   function plantAddDB(name, image) {

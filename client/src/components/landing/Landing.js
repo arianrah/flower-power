@@ -63,26 +63,13 @@ export default function Landing(props) {
     // transition(CHECK);
     loginDBCall(email, password);
     let token = localStorage.getItem("token");
-    if (!token) {
+    if (token) {
       back();
     } else {
       transition(DASHBOARD);
     }
   }
 
-  // function save(name, interviewer) {
-  //   const interview = {
-  //     student: name,
-  //     interviewer
-  //   };
-
-  //   transition(SAVING);
-
-  //   props
-  //     .bookInterview(props.id, interview)
-  //     .then(() => transition(SHOW))
-  //     .catch(error => transition(ERROR_SAVE, true));
-  // }
   function addPlant(plantName, plantImage) {
     plantAddDB(plantName, plantImage);
   }
