@@ -51,6 +51,26 @@ export default function useApplicationData() {
       localStorage.setItem("token", response.data.token);
     });
   }
+  function plantAddDB(name, image) {
+    console.log(`name: ${name}, image: ${image}`)
+    axios({
+      method: "post",
+      url: "/api/plants#new",
+      data: {
+        name:name,
+        image: image
+      }
+    })
+  }
+  function sensorAddDB(name) {
+    axios({
+      method: "post",
+      url: "/api/sensor#new",
+      data: {
+        name: name
+      }
+    })
+  }
 
-  return { loginDBCall, userSignup };
+  return { plantAddDB, loginDBCall, userSignup, sensorAddDB };
 }

@@ -20,7 +20,7 @@ export default function Signup(props) {
         <SignupComponents>
           <InputLabel controlId="email" message={"email"} />
           <input
-            type="text"
+            type="email"
             name="email"
             value={email}
             onChange={event => setEmail(event.target.value)}
@@ -28,7 +28,7 @@ export default function Signup(props) {
 
           <InputLabel controlId="password" message={"password"} />
           <input
-            type="text"
+            type="password"
             name="password"
             value={password}
             onChange={event => setPassword(event.target.value)}

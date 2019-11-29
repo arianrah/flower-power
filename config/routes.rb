@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
     get '/user-sensors' => 'user_sensors#index'
     post '/new-user-sensor' => 'user_sensors#create'
+    post '/plants-new' => 'plants#create'
+    get '/plants' => 'plants#index'
 
+    resources :plants
     resources :users 
     resources :sessions, only: [:create]
 
