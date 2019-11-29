@@ -2,6 +2,7 @@ import React from "react";
 // import styled from "styled-components";
 // import PlantImage from "./PlantImage";
 import PlantCard from "./PlantCard";
+import PlantBG from "./PlantBG";
 
 const props = [
   {
@@ -25,12 +26,12 @@ const plantCardOrder = {
 
 export default function Plants() {
   const plants = props.map(plant => (
-    <PlantCard 
-    key={plant.id}
-    name={plant.name}
-    image={plant.image} 
-    />
+    <PlantCard key={plant.id} name={plant.name} image={plant.image} />
   ));
-  return <ul style={plantCardOrder}>{plants}</ul>;
+  return (
+    <>
+      <ul style={plantCardOrder}>{plants}</ul>
+    </>
+  );
 }
 // export default Plants;

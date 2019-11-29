@@ -12,15 +12,6 @@ import cell_image from "./landing_cell.jpg";
 import useVisualMode from "../../hooks/useVisualMode";
 import Leading from "./Leading";
 import Dashboard from "../dashboard/Dashboard";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-//   useHistory,
-//   useLocation
-// } from "react-router-dom";
 
 const LEADING = "LEADING";
 const LOGIN = "LOGIN";
@@ -28,7 +19,6 @@ const SIGNUP = "SIGNUP";
 const PLANT = "PLANT";
 const DASHBOARD = "DASHBOARD";
 const PLANTADD = "PLANTADD";
-// const SENSORADD = "SENSORADD"
 
 const Bg = styled.div`
   background-image: url(${landing_image});
@@ -84,12 +74,7 @@ export default function Landing(props) {
   function plantInputPopUp() {
     transition(PLANTADD);
   }
-  // function addSensor(sensorName) {
-  //   sensorAddDB(sensorName)
-  // }
-  // function sensorInputPopUp(){
-  //   transition(SENSORADD)
-  // }
+
   return (
     <Fragment>
       <Bg>
