@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :plants
+  has_many :sensors
+  
   has_secure_password
   validates :password, presence: true
   validates :password, length: { minimum: 4 }

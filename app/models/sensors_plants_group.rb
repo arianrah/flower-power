@@ -1,2 +1,0 @@
-class SensorsPlantsGroup < ApplicationRecord
-end
