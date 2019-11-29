@@ -10,7 +10,6 @@ background-color: white;
 
 export default function sensorInput(props) {
   const [sensorName, setSensorName] = useState("");
-  const [sensorImage, setSensorImage] = useState("");
 
   return (
     <li>

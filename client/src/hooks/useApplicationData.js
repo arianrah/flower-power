@@ -64,6 +64,15 @@ export default function useApplicationData() {
       }
     })
   }
+  function sensorAddDB(name) {
+    axios({
+      method: "post",
+      url: "/api/sensor#new",
+      data: {
+        name: name
+      }
+    })
+  }
 
-  return { plantAddDB, loginDBCall, userSignup };
+  return { plantAddDB, loginDBCall, userSignup, sensorAddDB };
 }

@@ -16,7 +16,8 @@ import {
 const temp = [
   {
    name: "Group One",
-   plant_name: "fred"
+   plant_name: ["fred", " joon"],
+   sensor_name: 'pipipi'
   },
   {
     name: "Group Two",
@@ -30,7 +31,7 @@ const temp = [
 
 export default function Groups(props) {
   const groups = temp.map(group => (
-    <DashboardCard key={group.id} addPlant={props.addPlant} name={group.name} plant_name={group.plant_name} />
+    <DashboardCard key={group.id} addSensor={props.addSensor} sensor_name={group.sensor_name} addPlant={props.addPlant} name={group.name} plant_name={group.plant_name} />
   ));
   return <ul >{groups}</ul>;
 }
