@@ -12,15 +12,6 @@ import cell_image from "./landing_cell.jpg";
 import useVisualMode from "../../hooks/useVisualMode";
 import Leading from "./Leading";
 import Dashboard from "../dashboard/Dashboard";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link,
-//   Redirect,
-//   useHistory,
-//   useLocation
-// } from "react-router-dom";
 
 const LEADING = "LEADING";
 const LOGIN = "LOGIN";
@@ -98,12 +89,6 @@ export default function Landing(props) {
   function plantInputPopUp() {
     transition(PLANTADD);
   }
-  // function addSensor(sensorName) {
-  //   sensorAddDB(sensorName)
-  // }
-  // function sensorInputPopUp(){
-  //   transition(SENSORADD)
-  // }
   return (
     <Fragment>
       <Bg>
@@ -126,9 +111,6 @@ export default function Landing(props) {
         )}
         {mode === PLANT && <Plants />}
         {mode === DASHBOARD && <Dashboard addPlant={plantInputPopUp} />}
-        <h2>
-          {mode},{PLANTADD}
-        </h2>
         {mode === PLANTADD && (
           <PlantInput
             key={props.plantID}

@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import Button from "./ButtonLanding";
-import InputLabel from "./InputLabel";
 
-const SignupComponents = styled.div`
-  display: flex;
-  padding-top: 60vh;
-`;
+import Button from "./ButtonLanding";
+import ButtonDiv from "./ButtonDiv";
+import InputFieldStyle from "./InputFieldStyle";
+import InputDiv from "./InputDiv";
 
 export default function Signup(props) {
   const [email, setEmail] = useState("");
@@ -17,45 +14,50 @@ export default function Signup(props) {
   return (
     <div>
       <form onSubmit={event => event.preventDefault()}>
-        <SignupComponents>
-          <InputLabel controlId="email" message={"email"} />
-          <input
+        <InputDiv>
+          <InputFieldStyle
+            controlId="email"
             type="email"
             name="email"
             value={email}
+            placeholder="email"
             onChange={event => setEmail(event.target.value)}
           />
 
-          <InputLabel controlId="password" message={"password"} />
-          <input
+          <InputFieldStyle
+            controlId="password"
             type="password"
             name="password"
             value={password}
+            placeholder="password"
             onChange={event => setPassword(event.target.value)}
           />
 
-          <InputLabel controlId="firstName" message={"first name"} />
-          <input
+          <InputFieldStyle
+            controlId="firstName"
             type="text"
             name="first-name"
             value={firstName}
+            placeholder="frist name"
             onChange={event => setFirstName(event.target.value)}
           />
 
-          <InputLabel controlId="lastName" message={"last name"} />
-          <input
+          <InputFieldStyle
+            controlId="lastName"
             type="text"
             name="last-name"
             value={lastName}
+            placeholder="last name"
             onChange={event => setLastName(event.target.value)}
           />
-
+        </InputDiv>
+        <ButtonDiv>
           <Button
             onClick={() => props.onSignup(email, password, firstName, lastName)}
           >
             Signup
           </Button>
-        </SignupComponents>
+        </ButtonDiv>
       </form>
     </div>
   );

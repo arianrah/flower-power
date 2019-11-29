@@ -9,6 +9,13 @@ const Button = styled.button`
   border-radius: 25px;
   font-size: 18px;
   font-weight: bold;
+  bottom:0;
+  &:hover {background-color: #ffffff;
+color: #ff9192;
+}
+  &:active {outline: 0;
+    color: #ffffff;}
+
 `;
 
 export default Button;
