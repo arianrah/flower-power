@@ -15,7 +15,7 @@ class Api::UsersController < ApplicationController
         token: user.token
       }
     else
-      render json: { 
+      render :json => { 
         status: 401,
         errors: ['no such user', 'verify credentials and try again or signup']
       }
@@ -26,19 +26,21 @@ class Api::UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       user.generate_token
-      render json: {
-        token: user.token
+      render :json => {
+        token: user.token,
+        status: 201
       }
     else
-      render json: {
-        status: 401
+      render :json => {
+        status: 401,
+        errors: ['Validation failed, check if exists, or password length']
       }
     end
   end
 
   def destroy
     current_user.update(token: nil)
-    render json: {
+    render :json => {
       status: 200
     }
   end

@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     get '/user-sensors' => 'user_sensors#index'
     post '/new-user-sensor' => 'user_sensors#create'
     
-    post '/plants-new' => 'plants#create'
     get '/plants' => 'plants#index'
+    post '/plants-new' => 'plants#create'
+
+    get '/sensors' => 'sensors#index'
+    post '/sensors-new' => 'sensors#index'
 
     get '/sensor-history' => 'sensor_history#index'
     post '/sensor-history' => 'sensor_istory#create'
