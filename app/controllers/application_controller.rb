@@ -13,9 +13,11 @@ class ApplicationController < ActionController::API
 
   private
   def authenticate
-    Rails.logger.info request.headers["HTTP_AUTHORIZATION"]
+    # Rails.logger.info request.headers["HTTP_AUTHORIZATION"]
     authenticate_or_request_with_http_token do |token, options|
       @current_user = User.find_by(token: token)
+      return @current_user
+      # puts 'this is the auth token: '+token
       # ActiveSupport::SecurityUtils.secure_compare(token, TOKEN)
     end
   end

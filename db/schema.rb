@@ -40,12 +40,12 @@ ActiveRecord::Schema.define(version: 2019_11_29_225408) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sensor_history", force: :cascade do |t|
+  create_table "sensor_histories", force: :cascade do |t|
     t.string "latitude"
     t.string "longitude"
     t.boolean "moisture?"
     t.bigint "sensor_id"
-    t.index ["sensor_id"], name: "index_sensor_history_on_sensor_id"
+    t.index ["sensor_id"], name: "index_sensor_histories_on_sensor_id"
   end
 
   create_table "sensor_types", force: :cascade do |t|
@@ -74,6 +74,6 @@ ActiveRecord::Schema.define(version: 2019_11_29_225408) do
   add_foreign_key "group_plants_sensors", "sensors"
   add_foreign_key "group_plants_sensors", "users"
   add_foreign_key "groups", "users"
-  add_foreign_key "sensor_history", "sensors"
+  add_foreign_key "sensor_histories", "sensors"
   add_foreign_key "sensors", "sensor_types"
 end

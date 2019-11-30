@@ -15,7 +15,6 @@ class Api::UsersController < ApplicationController
         token: user.token
       }
     else
-      puts 'NO STUFF'
       render json: { 
         status: 401,
         errors: ['no such user', 'verify credentials and try again or signup']

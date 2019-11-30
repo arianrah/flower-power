@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     post '/plants-new' => 'plants#create'
     get '/plants' => 'plants#index'
 
+    get '/sensor-history' => 'sensor_history#index'
+    post '/sensor-history' => 'sensor_istory#create'
+
     resources :plants
     resources :users 
     resources :sessions, only: [:create]

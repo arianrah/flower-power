@@ -5,7 +5,6 @@ class Api::UserSensorsController < ApplicationController
     }
   end
   def create
-    p params
     # p user_sensor_params
     user_sensor = UserSensor.new(user_sensor_params)
     user_sensor.save
