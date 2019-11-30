@@ -1,3 +1,3 @@
-class SensorType < ApplicationRecord
-  belongs_to :sensor
+class SensorType < ActiveRecord::Base
+  has_many :sensors
 end
