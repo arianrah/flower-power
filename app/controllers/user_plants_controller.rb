@@ -1,2 +1,0 @@
-class UserPlantsController < ApplicationController
-end

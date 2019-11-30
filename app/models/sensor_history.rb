@@ -1,0 +1,2 @@
+class SensorHistory < ApplicationRecord
+end

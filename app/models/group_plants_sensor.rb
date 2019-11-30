@@ -1,0 +1,2 @@
+class GroupPlantsSensor < ApplicationRecord
+end

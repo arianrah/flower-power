@@ -1,2 +1,0 @@
-class SensorsPlantsGroupsController < ApplicationController
-end

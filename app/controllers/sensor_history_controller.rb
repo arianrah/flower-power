@@ -1,0 +1,2 @@
+class SensorHistoryController < ApplicationController
+end
