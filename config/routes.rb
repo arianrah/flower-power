@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do # /api/data
 
-    get '/data' => 'tests#index'
-    get '/users' => 'users#index'
+    get '/test' => 'tests#index'
 
+    get '/users' => 'users#index'
     post '/register' => 'users#create'
     post '/login' => 'users#is_user'
 
@@ -16,10 +16,10 @@ Rails.application.routes.draw do
     post '/plants-new' => 'plants#create'
 
     get '/sensors' => 'sensors#index'
-    post '/sensors-new' => 'sensors#index'
+    post '/sensors-new' => 'sensors#create'
 
     get '/sensor-history' => 'sensor_history#index'
-    post '/sensor-history' => 'sensor_istory#create'
+    post '/sensor-history-new' => 'sensor_history#create'
 
     resources :plants
     resources :users 
