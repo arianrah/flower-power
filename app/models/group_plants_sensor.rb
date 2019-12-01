@@ -1,6 +1,6 @@
 class GroupPlantsSensor < ApplicationRecord
   belongs_to :user
-  has_one :group
-  has_many :plants
-  has_many :sensors
+  belongs_to :group
+  belongs_to :plant
+  belongs_to :sensor
 end

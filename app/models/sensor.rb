@@ -1,6 +1,8 @@
 class Sensor < ApplicationRecord
-  has_many :sensor_types
+  belongs_to :sensor_type
+  belongs_to :user
+  has_many :group_plants_sensors
   has_many :sensor_histories
-  delegate :user, :to => :group_plants_sensors
+ 
 
 end
