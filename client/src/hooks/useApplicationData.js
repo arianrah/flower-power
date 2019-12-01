@@ -78,7 +78,7 @@ export default function useApplicationData() {
   function sensorAddDB(name) {
     axios({
       method: "post",
-      url: "/api/sensor#new",
+      url: "/api/sensors#new",
       data: {
         name: name
       }

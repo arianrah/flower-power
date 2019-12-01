@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import axios from "axios";
 import Plants from "../plants/Plants";
-import DashboardCard from "../dashboard/DashboardCard"
+
+import DashboardComponent from "./DashboardComponent";
+
+import useVisualMode from "../../hooks/useVisualMode";
+import useApplicationData from "../../hooks/useApplicationData";
+import PlantInput from "../dashboard/PlantInput";
+import SenorInput from "../dashboard/SensorInput";
 
 import {
   BrowserRouter as Router,
@@ -13,27 +19,61 @@ import {
   useLocation
 } from "react-router-dom";
 
-const temp = [
-  {
-   name: "Group One",
-   plant_name: ["fred", " joon"],
-   sensor_name: 'pipipi'
-  },
-  {
-    name: "Group Two",
-    plant_name: "jen"
-  },
-  {
-    name: "Group Three",
-    plant_name: "Audrey Two"
-  }
-]
+const PLANT = "PLANT";
+const DASHBOARD = "DASHBOARD";
+const PLANTADD = "PLANTADD";
+const SENSORADD = "SENSORADD";
 
 export default function Groups(props) {
-  const groups = temp.map(group => (
-    <DashboardCard key={group.id} addSensor={props.addSensor} sensor_name={group.sensor_name} addPlant={props.addPlant} name={group.name} plant_name={group.plant_name} />
-  ));
-  return <ul >{groups}</ul>;
+  const {
+    plantAddDB,
+    sensorAddDB,
+    loginDBCall,
+    userSignup,
+    hasToken
+  } = useApplicationData();
+  const { mode, transition, back } = useVisualMode(DASHBOARD);
+
+  function addPlant(plantName, plantImage) {
+    plantAddDB(plantName, plantImage);
+  }
+
+  function addSenor(sensorName) {
+    sensorAddDB(sensorName);
+  }
+  function plantInputPopUp() {
+    transition(PLANTADD);
+  }
+
+  function senorInputPopUp() {
+    transition(SENSORADD);
+  }
+
+  return (
+    <Fragment>
+      {mode === DASHBOARD && (
+        <DashboardComponent
+          addPlant={plantInputPopUp}
+          addSensor={senorInputPopUp}
+        />
+      )}
+      {mode === PLANTADD && (
+        <PlantInput
+          key={props.plantID}
+          plantName={props.plantName}
+          plantImage={props.plantImage}
+          addP={addPlant}
+        />
+      )}
+      {mode === SENSORADD && (
+        <SenorInput
+          key={props.sensorID}
+          sensorName={props.sensorName}
+          addS={addSenor}
+        />
+      )}
+    </Fragment>
+  );
 }
 
 // export default function dashboard(temp) {
