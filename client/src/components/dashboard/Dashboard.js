@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import Plants from "../plants/Plants";
+import Navbar from "../navbar/NavComponent";
 
 import DashboardComponent from "./DashboardComponent";
 
@@ -8,16 +9,6 @@ import useVisualMode from "../../hooks/useVisualMode";
 import useApplicationData from "../../hooks/useApplicationData";
 import PlantInput from "../dashboard/PlantInput";
 import SenorInput from "../dashboard/SensorInput";
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
-} from "react-router-dom";
 
 const PLANT = "PLANT";
 const DASHBOARD = "DASHBOARD";
@@ -34,6 +25,13 @@ export default function Groups(props) {
   } = useApplicationData();
   const { mode, transition, back } = useVisualMode(DASHBOARD);
 
+  function dashboardPage() {
+    transition(DASHBOARD);
+  }
+
+  function plantPage() {
+    transition(PLANT);
+  }
   function addPlant(plantName, plantImage) {
     plantAddDB(plantName, plantImage);
   }
@@ -51,6 +49,7 @@ export default function Groups(props) {
 
   return (
     <Fragment>
+      <Navbar dashboardPage={dashboardPage} plantPage={plantPage} />
       {mode === DASHBOARD && (
         <DashboardComponent
           addPlant={plantInputPopUp}
@@ -72,36 +71,7 @@ export default function Groups(props) {
           addS={addSenor}
         />
       )}
+      {mode === PLANT && <Plants />}
     </Fragment>
   );
 }
-
-// export default function dashboard(temp) {
-//   return (
-//     <>
-//       <h1>DASHBOARD</h1>
-//       <Router>
-//         <div>
-//           <nav>
-//             <ul>
-//               <li>
-//                 <Link to="/plants">Plants</Link>
-//               </li>
-//               {/* <li>
-//               <Link to="/dashboard">Dashboard</Link>
-//             </li> */}
-//             </ul>
-//           </nav>
-//           <Switch>
-//             <Route path="/plants">
-//               <Plants />
-//             </Route>
-//             {/* <Route path="/dashboard">
-//             <Dashboard />
-//           </Route> */}
-//           </Switch>
-//         </div>
-//       </Router>
-//     </>
-//   );
-// }

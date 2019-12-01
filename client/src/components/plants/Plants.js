@@ -2,7 +2,7 @@ import React from "react";
 // import styled from "styled-components";
 // import PlantImage from "./PlantImage";
 import PlantCard from "./PlantCard";
-import PlantBG from "./PlantBG";
+import BgPlant from "./BgPlant";
 
 const props = [
   {
@@ -30,7 +30,9 @@ export default function Plants() {
   ));
   return (
     <>
-      <ul style={plantCardOrder}>{plants}</ul>
+      <BgPlant>
+        <ul style={plantCardOrder}>{plants}</ul>
+      </BgPlant>
     </>
   );
 }
