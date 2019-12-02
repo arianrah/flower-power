@@ -6,15 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Drop all tables
+
+
+
+
+GroupPlantsSensor.delete_all
+
+Group.delete_all
+Plant.delete_all
+Sensor.delete_all
+User.delete_all
+SensorType.delete_all
 
 sensor_types = SensorType.create!([{ name:'moisture'}, {name:'pH'}, { name:'barometric'}, { name:'temperature'}])
 
 
-users = User.create([{  first_name: 'jeff', last_name: 'robson', email: 'jeff@robson.com', password_digest: '$2a$10$dHfD6S/9RCsqkgb2/54z8ONWl7vUAMVr8FuHSjOpKalISEslpaNs.'}, 
+users = User.create!([{  first_name: 'jeff', last_name: 'robson', email: 'jeff@robson.com', password: 'password'},
 
-{  first_name: 'email', last_name: 'asd', email: 'email@email.com', password_digest: '$2a$10$dHfD6S/9RCsqkgb2/54z8ONWl7vUAMVr8FuHSjOpKalISEslpaNs.'}, 
+{  first_name: 'email', last_name: 'asd', email: 'email@email.com', password: 'password'}, 
 
-{  first_name: 'party', last_name: 'time', email: 'party@time.com', password_digest: '$2a$10$dHfD6S/9RCsqkgb2/54z8ONWl7vUAMVr8FuHSjOpKalISEslpaNs.'} ])
+{  first_name: 'party', last_name: 'time', email: 'party@time.com', password: 'password'} ])
 
 
 
