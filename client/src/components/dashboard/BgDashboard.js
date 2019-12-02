@@ -6,9 +6,10 @@ const BgDashboard = styled.div`
   background-image: url(${desktop_image});
   min-height: 100vh;
   max-width: 100vw;
-  background-position: center top;
-  backgroud-size: cover;
-
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   top: 0;
 
   @media screen and (max-width: 500px) {

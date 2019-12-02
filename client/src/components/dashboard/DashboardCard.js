@@ -1,6 +1,10 @@
 import React from "react";
 import Button from "./DashboardButton";
+import Accordian from "./Accordian";
 import styled from "styled-components";
+import PlantInput from "./PlantInput";
+import AccordianSensor from "./AccordianSensor";
+import AccordianPlants from "./AccordianPlants";
 
 const DashboardListItem = styled.li`
   list-style-type: none;
@@ -20,8 +24,19 @@ export default function DashboardCard(props) {
     <DashboardListItem>
       <p style={groupName}>{props.name}</p>
       <p> {props.plant_name}</p>
-      <Button onClick={props.addPlant}> Add Plant</Button>
-      <Button onClick={props.addSensor}> Add Sensor</Button>
+      <AccordianPlants
+        title="add plant"
+        addPlant={props.addPlant}
+        plantName={props.plantName}
+        plantKey={props.plantID}
+      />
+
+      <AccordianSensor
+        title="add sensor"
+        addSensor={props.addSensor}
+        sensorKey={props.sensorID}
+        sensorName={props.sensorName}
+      />
     </DashboardListItem>
   );
 }

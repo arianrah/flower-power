@@ -2,6 +2,7 @@ import React from "react";
 import BgDashboard from "./BgDashboard";
 import DashboardCard from "../dashboard/DashboardCard";
 import DashboardUL from "./DashboardUL";
+import AccordionGroup from "./AccordianGroup";
 
 const temp = [
   {
@@ -33,7 +34,12 @@ export default function DashboardComponent(props) {
 
   return (
     <BgDashboard>
-      <DashboardUL>{groups}</DashboardUL>
+      <DashboardUL>
+        {groups}
+        <DashboardCard>
+          <AccordionGroup />
+        </DashboardCard>
+      </DashboardUL>
     </BgDashboard>
   );
 }

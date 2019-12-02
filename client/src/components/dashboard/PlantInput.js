@@ -1,39 +1,21 @@
-import React, { useState } from "react";
-import Button from "./DashboardButton";
-import styled from "styled-components";
-
-const PlantInputComponents = styled.div`
-width: 500px;
-height: 100px;
-background-color: white;
-`
+import React, { useState, Fragment } from "react";
 
 export default function plantInput(props) {
   const [plantName, setPlantName] = useState("");
-  const [plantImage, setPlantImage] = useState("");
 
   return (
-    <li>
-    <form onSubmit={event => event.preventDefault()}>
-      <PlantInputComponents>
-      <input
-        type="text"
-        name="plant-name"
-        value={plantName}
-        onChange={event => setPlantName(event.target.value)}
-        placeholder="Plant Name"
-      />
-      
-      <input
-        type="text"
-        name="plant-image"
-        value={plantImage}
-        onChange={event => setPlantImage(event.target.value)}
-        placeholder="Image Name"
-      />
-      <Button onClick={() => props.addP(plantName, plantImage)}>Submit</Button>
-      </PlantInputComponents>
-    </form>
-    </li>
+    <Fragment>
+      <form onSubmit={event => event.preventDefault()}>
+        <input
+          type="text"
+          name="plant-name"
+          value={plantName}
+          onChange={event => setPlantName(event.target.value)}
+          placeholder="Plant Name"
+        />
+
+        <button onClick={() => props.addP(plantName)}>Submit</button>
+      </form>
+    </Fragment>
   );
 }

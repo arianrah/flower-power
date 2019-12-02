@@ -2,13 +2,12 @@ import React, { Fragment } from "react";
 import axios from "axios";
 import Plants from "../plants/Plants";
 import Navbar from "../navbar/NavComponent";
-
+import Accordian from "./Accordian";
+import SensorInput from "./SensorInput";
 import DashboardComponent from "./DashboardComponent";
 
 import useVisualMode from "../../hooks/useVisualMode";
 import useApplicationData from "../../hooks/useApplicationData";
-import PlantInput from "../dashboard/PlantInput";
-import SenorInput from "../dashboard/SensorInput";
 
 const PLANT = "PLANT";
 const DASHBOARD = "DASHBOARD";
@@ -32,19 +31,12 @@ export default function Groups(props) {
   function plantPage() {
     transition(PLANT);
   }
-  function addPlant(plantName, plantImage) {
-    plantAddDB(plantName, plantImage);
+  function addPlant(plantName) {
+    plantAddDB(plantName);
   }
 
-  function addSenor(sensorName) {
+  function addSensor(sensorName) {
     sensorAddDB(sensorName);
-  }
-  function plantInputPopUp() {
-    transition(PLANTADD);
-  }
-
-  function senorInputPopUp() {
-    transition(SENSORADD);
   }
 
   return (
@@ -52,25 +44,15 @@ export default function Groups(props) {
       <Navbar dashboardPage={dashboardPage} plantPage={plantPage} />
       {mode === DASHBOARD && (
         <DashboardComponent
-          addPlant={plantInputPopUp}
-          addSensor={senorInputPopUp}
-        />
-      )}
-      {mode === PLANTADD && (
-        <PlantInput
-          key={props.plantID}
+          addPlant={addPlant}
+          addSensor={addSensor}
           plantName={props.plantName}
-          plantImage={props.plantImage}
-          addP={addPlant}
-        />
-      )}
-      {mode === SENSORADD && (
-        <SenorInput
-          key={props.sensorID}
+          plantKey={props.plantID}
+          sensorKey={props.sensorID}
           sensorName={props.sensorName}
-          addS={addSenor}
         />
       )}
+
       {mode === PLANT && <Plants />}
     </Fragment>
   );
