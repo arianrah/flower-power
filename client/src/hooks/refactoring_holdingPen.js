@@ -10,10 +10,6 @@ function userSignup(email, password, firstName, lastName) {
         password: password
       }
     }
-    // ,
-    // headers: {
-    //   Authorization: "Token token=hello"
-    // }
   }).then(response => {
     const token = response.data.token;
     if (response.data.status !== 401) {
@@ -41,14 +37,13 @@ function loginDBCall(email, password) {
     return token;
   });
 }
-function plantAddDB(name, image) {
-  console.log(`name: ${name}, image: ${image}`);
+function plantAddDB(name) {
+  console.log(`name: ${name}`);
   axios({
     method: "post",
     url: "/api/plants#new",
     data: {
-      name: name,
-      image: image
+      name: name
     }
   });
 }

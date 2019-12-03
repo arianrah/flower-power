@@ -16,6 +16,7 @@ const SENSORADD = "SENSORADD";
 
 export default function Groups(props) {
   const {
+    state,
     plantAddDB,
     sensorAddDB,
     loginDBCall,
