@@ -54,9 +54,7 @@ sensors= Sensor.create([
   {host:'330', gpio:'32456', user: users.first, sensor_type: sensor_types.first},
   {host:'330', gpio:'32456', user: users.first, sensor_type: sensor_types.first},
   {host:'339', gpio:'99456', user: users.first, sensor_type: sensor_types.second},
-  
   {host:'350', gpio:'38856', user: users.first, sensor_type: sensor_types.first},
-  
   {host:'330', gpio:'32456', user: users.third, sensor_type: sensor_types.first},
 
 
@@ -65,25 +63,23 @@ sensors= Sensor.create([
 
 
 GroupPlantsSensor.create(user: users.first, plant: plants1.first, sensor: sensors.first, group: groups.first)
-GroupPlantsSensor.create(user: users.first, plant: plants1.second, group: groups.first)
-GroupPlantsSensor.create(user: users.first, sensor: sensors.first, group: groups.first)
+GroupPlantsSensor.create(user: users.first, plant: plants1.second, sensor: sensors.first, group: groups.first)
 
-GroupPlantsSensor.create(user: users.first, plant: plants1.third, group: groups.second)
-GroupPlantsSensor.create(user: users.first, plant: plants1.fourth, group: groups.second)
-GroupPlantsSensor.create(user: users.first, plant: plants1.fifth, group: groups.second)
-GroupPlantsSensor.create(user: users.first, sensor: sensors.second, group: groups.second)
-GroupPlantsSensor.create(user: users.first, sensor: sensors.third, group: groups.second)
+
+GroupPlantsSensor.create(user: users.first, plant: plants1.third, sensor: sensors.second, group: groups.second)
+GroupPlantsSensor.create(user: users.first, plant: plants1.fourth, sensor: sensors.second, group: groups.second)
+GroupPlantsSensor.create(user: users.first, plant: plants1.fifth, sensor: sensors.third, group: groups.second)
+
 
 
 GroupPlantsSensor.create(user: users.second, plant: plants2.first, group: groups.third)
-GroupPlantsSensor.create(user: users.second, plant: plants2.second, group: groups.third)
-GroupPlantsSensor.create(user: users.second, plant: plants2.third, group: groups.third)
-GroupPlantsSensor.create(user: users.second, sensor: sensors.fourth, group: groups.third)
+GroupPlantsSensor.create(user: users.second, plant: plants2.second, sensor: sensors.fourth, group: groups.third)
+GroupPlantsSensor.create(user: users.second, plant: plants2.third, sensor: sensors.fourth, group: groups.third)
 
 
-GroupPlantsSensor.create(user: users.second, plant: plants2.fourth, group: groups.fourth)
-GroupPlantsSensor.create(user: users.second, plant: plants2.fifth, group: groups.fourth)
-GroupPlantsSensor.create(user: users.second, sensor: sensors.fifth, group: groups.fourth)
+
+GroupPlantsSensor.create(user: users.second, plant: plants2.fourth, sensor: sensors.fifth, group: groups.fourth)
+GroupPlantsSensor.create(user: users.second, plant: plants2.fifth, sensor: sensors.fifth, group: groups.fourth)
 
 
 

@@ -42,7 +42,7 @@ function Accordion(props) {
             name="group-name"
             value={groupName}
             onChange={event => setGroupName(event.target.value)}
-            placeholder="Plant Name"
+            placeholder="Group Name"
           />
 
           <button onClick={() => props.addGroup(groupName)}>Submit</button>
