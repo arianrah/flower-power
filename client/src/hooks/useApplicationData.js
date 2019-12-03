@@ -29,6 +29,50 @@ export default function useApplicationData() {
         );
     }
   }
+
+  function userSignup(email, password, firstName, lastName) {
+  return axios({
+    method: "post",
+    url: "/api/register",
+    data: {
+      user: {
+        email: email,
+        first_name: firstName,
+        last_name: lastName,
+        password: password
+      }
+    }
+    // ,
+    // headers: {
+    //   Authorization: "Token token=hello"
+    // }
+  }).then(response => {
+    const token = response.data.token;
+    if (response.data.status !== 401) {
+      localStorage.setItem("token", token);
+    }
+    return token;
+  });
+}
+
+function loginDBCall(email, password) {
+  return axios({
+    method: "post",
+    url: "/api/login",
+    data: {
+      user: {
+        email: email,
+        password: password
+      }
+    }
+  }).then(response => {
+    const token = response.data.token;
+    if (response.data.status !== 401) {
+      localStorage.setItem("token", token);
+    }
+    return token;
+  });
+}
   const [state, dispatch] = useReducer(reducer, {});
   useEffect(() => {
     Promise.all([
@@ -53,5 +97,5 @@ export default function useApplicationData() {
     });
   }, []);
   console.log("STATE", state);
-  return { state };
+  return { state, loginDBCall, userSignup };
 }
