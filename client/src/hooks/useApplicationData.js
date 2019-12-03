@@ -1,5 +1,5 @@
 // import { useEffect, useReducer } from "react";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
@@ -96,6 +96,24 @@ function loginDBCall(email, password) {
       });
     });
   }, []);
-  console.log("STATE", state);
-  return { state, loginDBCall, userSignup };
+
+ function getResource (url) {
+    const [data, setData] = useState([]);
+    const [error, setError] = useState(null);  
+    const [loading, setLoading] = useState(false);  
+  
+  
+    useEffect(() => {
+      setLoading(true);
+      axios.get(url)
+        .then(res => setData(res.data))
+        .catch(err => setError(err))
+        .done(() => setLoading(false))
+    }, []);
+  
+    return { data, error, loading }
+  }
+
+
+  return { state, loginDBCall, userSignup, getResource};
 }

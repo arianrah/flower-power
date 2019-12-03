@@ -19,10 +19,26 @@ const groupName = {
   margin: "0"
 };
 
+
+// const GroupsCards = ({
+//   groups
+// }) => (
+//   <ul>
+//   {
+//     groups.map(group => (
+//       <li>
+//         <Group group={group} />
+//       </li>
+//     ))
+//   }
+//   </ul>
+// )
+
+
 export default function DashboardCard(props) {
   return (
     <DashboardListItem>
-      <p style={groupName}>{props.name}</p>
+      <p style={groupName}>{props.DashboardContainer}}</p>
       <p> {props.plant_name}</p>
       <AccordianPlants
         title="add plant"

@@ -1,10 +1,9 @@
 class Api::GroupsController < ApplicationController
   skip_before_action :authenticate, :only => [:index, :create]
   def index
-    render :json => {
-      data: Group.all
-    }
+    render json: Group.all
   end
+  
   def create 
     group = Group.new(group_params)
     if group.save

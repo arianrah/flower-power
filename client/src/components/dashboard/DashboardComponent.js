@@ -5,21 +5,7 @@ import DashboardUL from "./DashboardUL";
 import AccordionGroup from "./AccordianGroup";
 import styled from "styled-components";
 
-const temp = [
-  {
-    name: "Group One",
-    plant_name: ["fred", " joon"],
-    sensor_name: "pipipi"
-  },
-  {
-    name: "Group Two",
-    plant_name: "jen"
-  },
-  {
-    name: "Group Three",
-    plant_name: "Audrey Two"
-  }
-];
+
 const GroupStyle = styled.li`
   list-style-type: none;
   background-color: #ffffff;
@@ -30,12 +16,10 @@ const GroupStyle = styled.li`
 `;
 
 export default function DashboardComponent(props) {
-  const groups = temp.map(group => (
+  const groups = props.data.map(group => (
     <DashboardCard
-      key={group.id}
-      sensor_name={group.sensor_name}
-      name={group.name}
-      plant_name={group.plant_name}
+    plantName={group.plant.name}
+    sensorName={group.sensor.name}
       addPlant={props.addPlant}
       addSensor={props.addSensor}
     />

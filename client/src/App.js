@@ -18,9 +18,9 @@ import {
 //   return localStorage.getItem("token") ? <Dashboard /> : <Landing />;
 // };
 export default function Application(props) {
-  const { state } = useApplicationData();
+  
   const token = localStorage.getItem("token");
   const [user, setUser] = useState(token);
-  console.log("App.js", state);
-  return user ? <Dashboard state={state} /> : <Landing setUser={setUser} />;
+  
+  return user ? <Dashboard  /> : <Landing setUser={setUser} />;
 }
