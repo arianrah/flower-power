@@ -11,8 +11,9 @@ class Api::UsersController < ApplicationController
     user = User.find_by(email: session_params[:email])
     if user && user.authenticate(session_params[:password])
       user.generate_token
-      render json: {
-        token: user.token
+      render :json => {
+        token: user.token,
+        status: 200
       }
     else
       render :json => { 

@@ -1,6 +1,7 @@
 class Api::PlantsController < ApplicationController
+  skip_before_action :authenticate, :only => [:index, :create]
   def index
-    render json: => {
+    render :json => {
       data: Plant.all,
       status: 200
     }

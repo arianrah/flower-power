@@ -1,91 +1,51 @@
 // import { useEffect, useReducer } from "react";
-import React from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
-// import "components/Application.scss";
-// axios.defaults.headers.post["HTTP_AUTHORIZATION"] = "hello";
-// axios.defaults.headers.get["HTTP_AUTHORIZATION"] = "hello";
+
 export default function useApplicationData() {
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get(`/api/api/sensors`)
-  //     axios.get(`/api/user-sensors`),
-  //     axios.get(`/api/plants`),
-  //     axios.get(`/api/interviewers`)
-  //   ]).then(all => {
-  //     dispatch({
-  //       type: SET_APPLICATION_DATA,
-  //       value: {
-  //         days: all[0].data,
-  //         appointments: all[1].data,
-  //         interviewers: all[2].data
-  //       }
-  //     });
-  //   });
-  // }, []);
+  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
+  const SET_PLANT = "SET_PLANT";
 
-  function userSignup(email, password, firstName, lastName) {
-    return axios({
-      method: "post",
-      url: "/api/register",
-      data: {
-        user: {
-          email: email,
-          first_name: firstName,
-          last_name: lastName,
-          password: password
+  function reducer(state, action) {
+    switch (action.type) {
+      case SET_APPLICATION_DATA:
+        return {
+          ...state,
+          sensortypes: action.value.sensortypes,
+          sensors: action.value.sensors,
+          plants: action.value.plants,
+          sensorhistory: action.value.sensorhistory
+        };
+      case SET_PLANT:
+        return {
+          ...state,
+          plants: action.value
+        };
+      default:
+        throw new Error(
+          `Tried to reduce with unsupported action type: ${action.type}`
+        );
+    }
+  }
+  const [state, dispatch] = useReducer(reducer, {});
+  useEffect(() => {
+    Promise.all([
+      axios.get(`/api/sensor-type`),
+      axios.get(`/api/sensors`),
+      axios.get(`/api/plants`),
+      axios.get(`/api/sensor-history`)
+    ]).then(all => {
+      dispatch({
+        type: SET_APPLICATION_DATA,
+        value: {
+          sensortypes: all[0].data,
+          sensors: all[1].data,
+          plants: all[2].data,
+          sensorhistory: all[3].data
         }
-      }
-      // ,
-      // headers: {
-      //   Authorization: "Token token=hello"
-      // }
-    }).then(response => {
-      const token = response.data.token;
-      if (response.data.status !== 401) {
-        localStorage.setItem("token", token);
-      }
-      return token;
+      });
     });
-  }
-
-  function loginDBCall(email, password) {
-    return axios({
-      method: "post",
-      url: "/api/login",
-      data: {
-        user: {
-          email: email,
-          password: password
-        }
-      }
-    }).then(response => {
-      const token = response.data.token;
-      if (response.data.status !== 401) {
-        localStorage.setItem("token", token);
-      }
-      return token;
-    });
-  }
-  function plantAddDB(name, image) {
-    console.log(`name: ${name}, image: ${image}`);
-    axios({
-      method: "post",
-      url: "/api/plants#new",
-      data: {
-        name: name,
-        image: image
-      }
-    });
-  }
-  function sensorAddDB(name) {
-    axios({
-      method: "post",
-      url: "/api/sensors#new",
-      data: {
-        name: name
-      }
-    });
-  }
-
-  return { plantAddDB, loginDBCall, userSignup, sensorAddDB };
+  }, []);
+  console.log("STATE", state);
+  return { state };
 }

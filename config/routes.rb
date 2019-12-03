@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     get '/sensor-history' => 'sensor_history#index'
     post '/sensor-history-new' => 'sensor_history#create'
 
+    get '/sensor-type' => 'sensor_types#index'
+
     resources :plants
     resources :users 
     resources :sessions, only: [:create]

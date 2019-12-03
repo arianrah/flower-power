@@ -1,2 +1,0 @@
-class SensorTypesController < ApplicationController
-end
