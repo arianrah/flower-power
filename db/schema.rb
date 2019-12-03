@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_225408) do
   create_table "sensor_histories", force: :cascade do |t|
     t.string "latitude"
     t.string "longitude"
-    t.boolean "moisture?"
+    t.boolean "moisture"
     t.bigint "sensor_id"
     t.index ["sensor_id"], name: "index_sensor_histories_on_sensor_id"
   end
