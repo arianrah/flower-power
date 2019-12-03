@@ -54,7 +54,9 @@ export default function Groups(props) {
         />
       )}
       {/* <Victory /> */}
-      {mode === PLANT && <Plants />}
+      {mode === PLANT && <Plants
+      
+      />}
     </Fragment>
   );
 }

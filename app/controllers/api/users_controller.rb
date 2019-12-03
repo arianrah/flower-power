@@ -2,9 +2,7 @@ class Api::UsersController < ApplicationController
   skip_before_action :authenticate, :only => [:create, :is_user, :destroy, :index]
   def index
     users = User.all
-    render :json => {
-      data: User.all
-    }
+    render json: User.all
   end
   
   def is_user
