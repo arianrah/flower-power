@@ -14,7 +14,7 @@ const DASHBOARD = "DASHBOARD";
 const PLANTADD = "PLANTADD";
 const SENSORADD = "SENSORADD";
 
-export default function Groups(props) {
+export default function Dashboard(props) {
   const {
     state,
     plantAddDB,
