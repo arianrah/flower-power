@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     get '/groups' => 'groups#index'
     post '/groups-new' => 'groups#index'
 
+    get '/group-plants-sensors' => 'group_plants_sensors#index'
+    post '/group-plants-sensors' => 'group_plants_sensors#create'
+
     resources :plants
     resources :users 
     resources :sessions, only: [:create]

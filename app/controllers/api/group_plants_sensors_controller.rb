@@ -1,12 +1,13 @@
 class Api::GroupPlantsSensorsController < ApplicationController
+  skip_before_action :authenticate, :only => [:index, :create]
   def index
-    gps = GroupPlantSensor.all
+    gps = GroupPlantsSensor.all
     render :json => {
-      data: GroupPlantSensor.all
+      data: GroupPlantsSensor.all
     }
   end
   def create
-    gps = GroupPlantSensor.new(gps_params)
+    gps = GroupPlantsSensor.new(gps_params)
     if gps.save
       render :json => {
        status: 201

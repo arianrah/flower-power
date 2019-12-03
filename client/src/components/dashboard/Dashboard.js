@@ -5,6 +5,7 @@ import Navbar from "../navbar/NavComponent";
 import Accordian from "./Accordian";
 import SensorInput from "./SensorInput";
 import DashboardComponent from "./DashboardComponent";
+import Victory from "./Victory";
 
 import useVisualMode from "../../hooks/useVisualMode";
 import useApplicationData from "../../hooks/useApplicationData";
@@ -52,7 +53,7 @@ export default function Groups(props) {
           sensorName={props.sensorName}
         />
       )}
-
+      <Victory />
       {mode === PLANT && <Plants />}
     </Fragment>
   );
