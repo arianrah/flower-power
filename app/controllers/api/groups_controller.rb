@@ -1,8 +1,8 @@
-def index
-  class Api::GroupsController < ApplicationController
+class Api::GroupsController < ApplicationController
+  skip_before_action :authenticate, :only => [:index, :create]
+  def index
     render :json => {
-      data. Group.all,
-      status: 200
+      data: Group.all
     }
   end
   def create 
