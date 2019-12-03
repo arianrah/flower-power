@@ -20,9 +20,9 @@ const plantName = {
 
 export default function PlantCard(props) {
   return (
-    <il style={plantCard}>
+    <li style={plantCard}>
       <img src={props.image} alt={props.name} style={plantImage} />
       <p style={plantName}>{props.name}</p>
-    </il>
+    </li>
   );
 }

@@ -53,7 +53,7 @@ export default function Groups(props) {
           sensorName={props.sensorName}
         />
       )}
-      <Victory />
+      {/* <Victory /> */}
       {mode === PLANT && <Plants />}
     </Fragment>
   );
