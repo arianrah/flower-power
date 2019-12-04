@@ -1,11 +1,14 @@
 class Api::GroupsController < ApplicationController
-  skip_before_action :authenticate, :only => [:index, :create]
+  # skip_before_action :authenticate, :only => [:index]
   def index
-    render json: Group.all
+    render json: current_user.groups
   end
-  
+  def show
+    render json: current_user.groups
+  end
   def create 
-    group = Group.new(group_params)
+    group = current_user.groups.new(group_params)
+    
     if group.save
       render :json => {
        status: 201

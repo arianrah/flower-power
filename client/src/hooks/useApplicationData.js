@@ -31,57 +31,82 @@ export default function useApplicationData() {
   }
 
   function userSignup(email, password, firstName, lastName) {
-  return axios({
-    method: "post",
-    url: "/api/register",
-    data: {
-      user: {
-        email: email,
-        first_name: firstName,
-        last_name: lastName,
-        password: password
+    return axios({
+      method: "post",
+      url: "/api/register",
+      data: {
+        user: {
+          email: email,
+          first_name: firstName,
+          last_name: lastName,
+          password: password
+        }
       }
-    }
-    // ,
-    // headers: {
-    //   Authorization: "Token token=hello"
-    // }
-  }).then(response => {
-    const token = response.data.token;
-    if (response.data.status !== 401) {
-      localStorage.setItem("token", token);
-    }
-    return token;
-  });
-}
+    }).then(response => {
+      const token = response.data.token;
+      if (response.data.status !== 401) {
+        localStorage.setItem("token", token);
+      }
+      // console.log(window.localstorage.getItem("token"));
+      return token;
+    });
+  }
 
-function loginDBCall(email, password) {
-  return axios({
-    method: "post",
-    url: "/api/login",
-    data: {
-      user: {
-        email: email,
-        password: password
+  function loginDBCall(email, password) {
+    return axios({
+      method: "post",
+      url: "/api/login",
+      data: {
+        user: {
+          email: email,
+          password: password
+        }
       }
-    }
-  }).then(response => {
-    const token = response.data.token;
-    if (response.data.status !== 401) {
-      localStorage.setItem("token", token);
-    }
-    return token;
-  });
-}
+      // ,
+      // headers: {
+      //   Authorization: `Token token=${window.localstorage.getItem("token")}`
+      // }
+    }).then(response => {
+      const token = response.data.token;
+      if (response.data.status !== 401) {
+        localStorage.setItem("token", token);
+      }
+      return token;
+    });
+  }
   const [state, dispatch] = useReducer(reducer, {});
   useEffect(() => {
     Promise.all([
-      axios.get(`/api/sensor-type`),
-      axios.get(`/api/sensors`),
-      axios.get(`/api/plants`),
-      axios.get(`/api/sensor-history`),
-      axios.get('/api/groups'),
-      axios.get('/api/group-plants-sensors')
+      axios.get(`/api/sensor-type`, {
+        headers: {
+          Authorization: `Token token=${localStorage.getItem("token")}`
+        }
+      }),
+      axios.get(`/api/sensors`, {
+        headers: {
+          Authorization: `Token token=${localStorage.getItem("token")}`
+        }
+      }),
+      axios.get(`/api/plants`, {
+        headers: {
+          Authorization: `Token token=${localStorage.getItem("token")}`
+        }
+      }),
+      axios.get(`/api/sensor-history`, {
+        headers: {
+          Authorization: `Token token=${localStorage.getItem("token")}`
+        }
+      }),
+      axios.get("/api/groups", {
+        headers: {
+          Authorization: `Token token=${localStorage.getItem("token")}`
+        }
+      })
+      // axios.get("/api/group-plants-sensors", {
+      //   headers: {
+      //     Authorization: `Token token=${localStorage.getItem("token")}`
+      //   }
+      // })
     ]).then(all => {
       dispatch({
         type: SET_APPLICATION_DATA,
@@ -90,30 +115,28 @@ function loginDBCall(email, password) {
           sensors: all[1].data,
           plants: all[2].data,
           sensorhistory: all[3].data,
-          groups: all[4].data,
-          groupplantssensors: all[5].data
+          groups: all[4].data
         }
       });
     });
   }, []);
 
- function getResource (url) {
+  function getResource(url) {
     const [data, setData] = useState([]);
-    const [error, setError] = useState(null);  
-    const [loading, setLoading] = useState(false);  
-  
-  
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
       setLoading(true);
-      axios.get(url)
+      axios
+        .get(url)
         .then(res => setData(res.data))
         .catch(err => setError(err))
-        .done(() => setLoading(false))
+        .done(() => setLoading(false));
     }, []);
-  
-    return { data, error, loading }
+
+    return { data, error, loading };
   }
 
-
-  return { state, loginDBCall, userSignup, getResource};
+  return { state, loginDBCall, userSignup, getResource };
 }

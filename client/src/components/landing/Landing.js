@@ -56,8 +56,8 @@ export default function Landing(props) {
     });
   }
 
-  function addPlant(plantName, plantImage) {
-    plantAddDB(plantName, plantImage);
+  function addPlant(plantName) {
+    plantAddDB(plantName);
   }
   function plantInputPopUp() {
     transition(PLANTADD);
@@ -97,7 +97,7 @@ export default function Landing(props) {
         <PlantInput
           key={props.plantID}
           plantName={props.plantName}
-          plantImage={props.plantImage}
+          // plantImage={props.plantImage}
           addP={addPlant}
         />
       )}

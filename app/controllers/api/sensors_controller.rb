@@ -1,10 +1,7 @@
 class Api::SensorsController < ApplicationController
-  skip_before_action :authenticate, :only => [:index, :create]
+  # skip_before_action :authenticate, :only => [:index, :create]
   def index
-    render :json => {
-      data: Sensor.all,
-      status: 200
-    }
+    render json: current_user.sensors
   end
   def create
     sensor = Sensor.new(sensor_params)

@@ -6,6 +6,8 @@ import AccordianSensor from "./AccordianSensor";
 import AccordianPlants from "./AccordianPlants";
 import AccordianGroup from "./AccordianGroup";
 
+let user_token = localStorage.getItem("token");
+
 const getResource = url => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -14,12 +16,16 @@ const getResource = url => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(url)
+      .get(url, {
+        headers: {
+          Authorization: `Token token=${localStorage.getItem("token")}`
+        }
+      })
       .then(res => setData(res.data))
       .catch(err => setError(err))
       .finally(() => setLoading(false));
   }, []);
-
+  console.log("DATA: ", data);
   return { data, error, loading };
 };
 
@@ -56,18 +62,60 @@ const GroupCard = ({ group }) => (
   </>
 );
 
+function addPlant(plantName, group) {
+  console.log(user_token);
+  return axios({
+    method: "post",
+    url: `/api/groups/${group.id}/plants`,
+    data: {
+      plant: {
+        name: plantName
+      }
+    },
+    headers: {
+      Authorization: `Token token=${localStorage.getItem("token")}`
+    }
+  }).then(r => {
+    console.log(r);
+  });
+}
+
+function addGroup(groupName) {
+  console.log(groupName);
+  return axios({
+    method: "post",
+    url: "/api/groups-new",
+    data: {
+      group: {
+        name: groupName,
+        user_id: 1
+      }
+    },
+    headers: {
+      Authorization: `Token token=${localStorage.getItem("token")}`
+    }
+  }).then(r => {
+    console.log(r);
+  });
+}
+
 const GroupsCards = ({ groups }) => (
   <BgDashboard>
     <GroupWrapper>
       {groups.map(group => (
         <GroupCardWrapper key={`group_${group.id}`}>
+          <h1>GROUP ID: {group.id}</h1>
           <GroupCard group={group} />
-          <AccordianPlants title="Add Plant" />
-          <AccordianSensor title="Add Sensor" />
+          <AccordianPlants
+            title="Add Plant"
+            addPlant={addPlant}
+            group={group}
+          />
+          <AccordianSensor title="Add Sensor" group={group} />
         </GroupCardWrapper>
       ))}
       <GroupCardWrapper>
-        <AccordianGroup title="Add Group" />
+        <AccordianGroup title="Add Group" addGroup={addGroup} />
       </GroupCardWrapper>
     </GroupWrapper>
   </BgDashboard>

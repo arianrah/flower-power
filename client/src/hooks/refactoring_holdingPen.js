@@ -1,12 +1,11 @@
-f
-function plantAddDB(name, image) {
+f;
+function plantAddDB(name) {
   console.log(`name: ${name}, image: ${image}`);
   axios({
     method: "post",
-    url: "/api/plants#new",
-    data: {
-      name: name,
-      image: image
+    url: "/api/plants-new",
+    plant: {
+      name: name
     }
   });
 }

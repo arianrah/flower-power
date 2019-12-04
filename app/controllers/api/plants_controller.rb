@@ -1,16 +1,17 @@
 class Api::PlantsController < ApplicationController
-  skip_before_action :authenticate, :only => [:index, :create]
+  # skip_before_action :authenticate, :only => [:index]
   def index
-    render :json => {
-      data: Plant.all,
-      status: 200
-    }
+    render json: current_user.plants
   end
   def create
-    plant = Plant.new(plant_params)
+    group = current_user.groups.find(params[:group_id])
+    plant = current_user.plants.new(plant_params)
+    # byebug
+    plant.group = group
     if plant.save
       render :json => {
-       status: 201
+        data: plant,
+        statue: 201
       }
     else
       render :json => {
@@ -20,6 +21,6 @@ class Api::PlantsController < ApplicationController
   end
   private
   def plant_params
-    params.require(:plant).permit(:name, :image)
+    params.require(:plant).permit(:name)
   end  
 end

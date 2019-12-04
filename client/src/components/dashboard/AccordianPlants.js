@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import Chevron from "./Chevron";
+import axios from "axios";
 
 import "./Accordion.css";
 
@@ -44,8 +45,10 @@ function Accordion(props) {
             onChange={event => setPlantName(event.target.value)}
             placeholder="Plant Name"
           />
-
-          <button onClick={() => props.addPlant(plantName)}>Submit</button>
+          <h1>GROUP: {props.group.id}</h1>
+          <button onClick={() => props.addPlant(plantName, props.group)}>
+            Submit
+          </button>
         </form>
       </div>
     </div>

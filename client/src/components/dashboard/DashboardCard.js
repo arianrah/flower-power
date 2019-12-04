@@ -45,6 +45,7 @@ export default function DashboardCard(props) {
         addPlant={props.addPlant}
         plantName={props.plantName}
         plantKey={props.plantID}
+        
       />
 
       <AccordianSensor

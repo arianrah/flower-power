@@ -10,21 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_225408) do
+ActiveRecord::Schema.define(version: 2019_12_04_030340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "group_plants_sensors", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "plant_id"
-    t.bigint "sensor_id"
-    t.bigint "group_id"
-    t.index ["group_id"], name: "index_group_plants_sensors_on_group_id"
-    t.index ["plant_id"], name: "index_group_plants_sensors_on_plant_id"
-    t.index ["sensor_id"], name: "index_group_plants_sensors_on_sensor_id"
-    t.index ["user_id"], name: "index_group_plants_sensors_on_user_id"
-  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -39,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_225408) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "group_id"
     t.index ["user_id"], name: "index_plants_on_user_id"
   end
 
@@ -59,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_225408) do
     t.string "gpio"
     t.bigint "user_id"
     t.bigint "sensor_type_id"
+    t.integer "plant_id"
     t.index ["sensor_type_id"], name: "index_sensors_on_sensor_type_id"
     t.index ["user_id"], name: "index_sensors_on_user_id"
   end
@@ -73,10 +64,6 @@ ActiveRecord::Schema.define(version: 2019_11_29_225408) do
     t.string "token"
   end
 
-  add_foreign_key "group_plants_sensors", "groups"
-  add_foreign_key "group_plants_sensors", "plants"
-  add_foreign_key "group_plants_sensors", "sensors"
-  add_foreign_key "group_plants_sensors", "users"
   add_foreign_key "groups", "users"
   add_foreign_key "plants", "users"
   add_foreign_key "sensor_histories", "sensors"

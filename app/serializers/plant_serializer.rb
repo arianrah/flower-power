@@ -1,4 +1,5 @@
 class PlantSerializer < ActiveModel::Serializer
+  # include NullAttributesRemover
   attributes :id, :name, :user_name
 
   def user_name

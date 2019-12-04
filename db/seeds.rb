@@ -11,7 +11,7 @@
 
 
 
-GroupPlantsSensor.delete_all
+# GroupPlantsSensor.delete_all
 
 Group.delete_all
 Plant.delete_all
@@ -62,24 +62,24 @@ sensors= Sensor.create([
 
 
 
-GroupPlantsSensor.create(user: users.first, plant: plants1.first, sensor: sensors.first, group: groups.first)
-GroupPlantsSensor.create(user: users.first, plant: plants1.second, sensor: sensors.first, group: groups.first)
+# GroupPlantsSensor.create(user: users.first, plant: plants1.first, sensor: sensors.first, group: groups.first)
+# GroupPlantsSensor.create(user: users.first, plant: plants1.second, sensor: sensors.first, group: groups.first)
 
 
-GroupPlantsSensor.create(user: users.first, plant: plants1.third, sensor: sensors.second, group: groups.second)
-GroupPlantsSensor.create(user: users.first, plant: plants1.fourth, sensor: sensors.second, group: groups.second)
-GroupPlantsSensor.create(user: users.first, plant: plants1.fifth, sensor: sensors.third, group: groups.second)
-
-
-
-GroupPlantsSensor.create(user: users.second, plant: plants2.first, group: groups.third)
-GroupPlantsSensor.create(user: users.second, plant: plants2.second, sensor: sensors.fourth, group: groups.third)
-GroupPlantsSensor.create(user: users.second, plant: plants2.third, sensor: sensors.fourth, group: groups.third)
+# GroupPlantsSensor.create(user: users.first, plant: plants1.third, sensor: sensors.second, group: groups.second)
+# GroupPlantsSensor.create(user: users.first, plant: plants1.fourth, sensor: sensors.second, group: groups.second)
+# GroupPlantsSensor.create(user: users.first, plant: plants1.fifth, sensor: sensors.third, group: groups.second)
 
 
 
-GroupPlantsSensor.create(user: users.second, plant: plants2.fourth, sensor: sensors.fifth, group: groups.fourth)
-GroupPlantsSensor.create(user: users.second, plant: plants2.fifth, sensor: sensors.fifth, group: groups.fourth)
+# GroupPlantsSensor.create(user: users.second, plant: plants2.first, group: groups.third)
+# GroupPlantsSensor.create(user: users.second, plant: plants2.second, sensor: sensors.fourth, group: groups.third)
+# GroupPlantsSensor.create(user: users.second, plant: plants2.third, sensor: sensors.fourth, group: groups.third)
+
+
+
+# GroupPlantsSensor.create(user: users.second, plant: plants2.fourth, sensor: sensors.fifth, group: groups.fourth)
+# GroupPlantsSensor.create(user: users.second, plant: plants2.fifth, sensor: sensors.fifth, group: groups.fourth)
 
 
 
