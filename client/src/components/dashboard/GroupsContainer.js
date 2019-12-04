@@ -80,7 +80,7 @@ function addPlant(plantName, group) {
   });
 }
 
-function addGroup(groupName) {
+function addGroup(groupName, id) {
   console.log(groupName);
   return axios({
     method: "post",
@@ -88,7 +88,7 @@ function addGroup(groupName) {
     data: {
       group: {
         name: groupName,
-        user_id: 1
+        user_id: id
       }
     },
     headers: {

@@ -36,6 +36,10 @@ class Api::UsersController < ApplicationController
       }
     end
   end
+  
+  # def return_id
+  #   render json
+  # end
 
   def destroy
     current_user.update(token: nil)

@@ -45,7 +45,9 @@ function Accordion(props) {
             placeholder="Group Name"
           />
 
-          <button onClick={() => props.addGroup(groupName)}>Submit</button>
+          <button onClick={() => props.addGroup(groupName, props.group)}>
+            Submit
+          </button>
         </form>
       </div>
     </div>
