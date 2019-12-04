@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     post '/groups/:group_id/sensors' => 'sensors#create'
     post '/groups/:group_id/plants' => 'plants#create'
 
+
+    #NO IDEA JUST FIGURE MAYBE?
+    # post '/groups/:user_id/groups' => 'groups#create'
+
     get '/group-plants-sensors' => 'group_plants_sensors#index'
     post '/group-plants-sensors' => 'group_plants_sensors#create'
 

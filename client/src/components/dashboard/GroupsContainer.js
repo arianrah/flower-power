@@ -5,6 +5,9 @@ import BgDashboard from "./BgDashboard";
 import AccordianSensor from "./AccordianSensor";
 import AccordianPlants from "./AccordianPlants";
 import AccordianGroup from "./AccordianGroup";
+// import useVisualMode from "../../hooks/useVisualMode";
+// const DASHBOARD = "DASHBOARD";
+// const { mode, transition, back } = useVisualMode(DASHBOARD);
 
 let user_token = localStorage.getItem("token");
 
@@ -96,6 +99,7 @@ function addGroup(groupName, id) {
     }
   }).then(r => {
     console.log(r);
+    // transition(DASHBOARD);
   });
 }
 
@@ -104,19 +108,19 @@ const GroupsCards = ({ groups }) => (
     <GroupWrapper>
       {groups.map(group => (
         <GroupCardWrapper key={`group_${group.id}`}>
-          <h1>GROUP ID: {group.id}</h1>
+          {/* <h1>GROUP ID: {group.id}</h1> */}
           <GroupCard group={group} />
           <AccordianPlants
             title="Add Plant"
             addPlant={addPlant}
             group={group}
           />
-          <AccordianSensor title="Add Sensor" group={group} />
+          {/* <AccordianSensor title="Add Sensor" group={group} /> */}
         </GroupCardWrapper>
       ))}
-      <GroupCardWrapper>
+      {/* <GroupCardWrapper>
         <AccordianGroup title="Add Group" addGroup={addGroup} />
-      </GroupCardWrapper>
+      </GroupCardWrapper> */}
     </GroupWrapper>
   </BgDashboard>
 );
