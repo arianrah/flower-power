@@ -11,6 +11,7 @@ class Api::UsersController < ApplicationController
       user.generate_token
       render :json => {
         token: user.token,
+        user_id: user.id,
         status: 200
       }
     else
@@ -27,6 +28,7 @@ class Api::UsersController < ApplicationController
       user.generate_token
       render :json => {
         token: user.token,
+        user_id: user.id,
         status: 201
       }
     else

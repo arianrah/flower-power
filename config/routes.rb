@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get '/sensor-type' => 'sensor_types#index'
 
     get '/groups' => 'groups#index'
-    post '/groups-new' => 'groups#index'
+    post '/groups-new' => 'groups#create'
     get '/groups/:id' => 'groups#show'
     post '/groups/:group_id/sensors' => 'sensors#create'
     post '/groups/:group_id/plants' => 'plants#create'

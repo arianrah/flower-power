@@ -42,7 +42,6 @@ function Accordion(props) {
             onChange={event => setSensorName(event.target.value)}
             placeholder="Sensor Name"
           />
-
           <Button onClick={() => props.addSensor(sensorName)}>Submit</Button>
         </form>
       </div>

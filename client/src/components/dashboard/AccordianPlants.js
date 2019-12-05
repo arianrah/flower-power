@@ -70,7 +70,7 @@ export default function Accordion(props) {
               Submit
             </button>
           </form>
-          {/* <AccordianSensor title="Add Sensor" group={props.group} /> */}
+          <AccordianSensor title="Add Sensor" group={props.group} />
         </div>
       </div>
     </>

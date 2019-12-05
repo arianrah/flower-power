@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import axios from "axios";
 import Chevron from "./Chevron";
 
 import "./Accordion.css";
@@ -21,6 +22,25 @@ function Accordion(props) {
     );
   }
 
+  // function addGroup(groupName) {
+  //   // console.log(groupName);
+  //   return axios({
+  //     method: "post",
+  //     url: "/api/groups-new",
+  //     data: {
+  //       group: {
+  //         name: groupName,
+  //         user_id: `Token token=${localStorage.getItem("user_id")}`
+  //       }
+  //     },
+  //     headers: {
+  //       Authorization: `Token token=${localStorage.getItem("token")}`
+  //     }
+  //   }).then(r => {
+  //     console.log(r);
+  //   });
+  // }
+
   return (
     <div className="accordion__section">
       <button className={`accordion ${setActive}`} onClick={toggleAccordion}>
@@ -36,6 +56,7 @@ function Accordion(props) {
           className="accordion__form"
           // dangerouslySetInnerHTML={{ __html: props.content }}
         />
+        {/* <div>{groupName}</div> */}
         <form onSubmit={event => event.preventDefault()}>
           <input
             type="text"
@@ -44,10 +65,7 @@ function Accordion(props) {
             onChange={event => setGroupName(event.target.value)}
             placeholder="Group Name"
           />
-
-          <button onClick={() => props.addGroup(groupName, props.group)}>
-            Submit
-          </button>
+          <button onClick={() => props.addGroup(groupName)}>Submit</button>
         </form>
       </div>
     </div>

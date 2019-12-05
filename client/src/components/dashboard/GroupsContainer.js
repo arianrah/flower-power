@@ -53,7 +53,7 @@ const GroupCardWrapper = styled.li`
   padding-top: 5vh;
 `;
 
-const GroupCard = ({ group }) => (
+const GroupCard = ({ group, groupName }) => (
   <>
     <GroupTitle>{group.name}</GroupTitle>
     {group.plants.map(plant => (
@@ -62,6 +62,9 @@ const GroupCard = ({ group }) => (
     {group.sensors.map(sensor => (
       <p>{sensor.sensor_type_id}</p>
     ))}
+    <GroupTitle>{groupName}</GroupTitle>
+    {/* <p>{plant.name}</p>
+    <p>{sensor.sensor_type_id}</p> */}
   </>
 );
 
@@ -83,50 +86,67 @@ function addPlant(plantName, group) {
   });
 }
 
-function addGroup(groupName, id) {
-  console.log(groupName);
-  return axios({
-    method: "post",
-    url: "/api/groups-new",
-    data: {
-      group: {
-        name: groupName,
-        user_id: id
-      }
-    },
-    headers: {
-      Authorization: `Token token=${localStorage.getItem("token")}`
-    }
-  }).then(r => {
-    console.log(r);
-    // transition(DASHBOARD);
-  });
-}
-
-const GroupsCards = ({ groups }) => (
-  <BgDashboard>
-    <GroupWrapper>
-      {groups.map(group => (
-        <GroupCardWrapper key={`group_${group.id}`}>
-          {/* <h1>GROUP ID: {group.id}</h1> */}
-          <GroupCard group={group} />
-          <AccordianPlants
-            title="Add Plant"
-            addPlant={addPlant}
-            group={group}
-          />
-          {/* <AccordianSensor title="Add Sensor" group={group} /> */}
+const GroupsCards = ({ groups, addGroup }) => {
+  return (
+    <BgDashboard>
+      <GroupWrapper>
+        {groups.map(group => (
+          <GroupCardWrapper key={`group_${group.id}`}>
+            {/* <h1>GROUP ID: {group.id}</h1> */}
+            <GroupCard group={group} />
+            <AccordianPlants
+              title="Add Plant"
+              addPlant={addPlant}
+              group={group}
+            />
+            {/* <AccordianSensor title="Add Sensor" group={group} /> */}
+          </GroupCardWrapper>
+        ))}
+        <GroupCardWrapper>
+          <AccordianGroup title="Add Group" addGroup={addGroup} />
         </GroupCardWrapper>
-      ))}
-      {/* <GroupCardWrapper>
-        <AccordianGroup title="Add Group" addGroup={addGroup} />
-      </GroupCardWrapper> */}
-    </GroupWrapper>
-  </BgDashboard>
-);
+      </GroupWrapper>
+    </BgDashboard>
+  );
+};
 
 const GroupsContainer = () => {
+  const [groupsData, setGroupsData] = useState([]);
+  const [groupState, setGroupState] = useState("");
   const { data, error, loading } = getResource("/api/groups");
+  // console.log("data at the top!", data);
+  useEffect(() => {
+    console.log("inside useEffect/data", data);
+    setGroupsData(data);
+  }, [data]);
+
+  function addGroup(groupName) {
+    // console.log("addGroup check:", groupName);
+    setGroupState(groupName);
+    return axios({
+      method: "post",
+      url: "/api/groups-new",
+      data: {
+        group: {
+          name: groupName,
+          user_id: `Token token=${localStorage.getItem("user_id")}`
+        }
+      },
+      headers: {
+        Authorization: `Token token=${localStorage.getItem("token")}`
+      }
+    }).then(r => {
+      const lastGroup = {
+        id: 123123,
+        name: groupName,
+        plants: Array(0),
+        sensors: Array(0)
+      };
+      // data.push(lastGroup);
+      console.log("lastGroup sfsfd:", lastGroup);
+      setGroupsData([...data, lastGroup]);
+    });
+  }
 
   if (error) {
     return <div>Oops</div>;
@@ -135,8 +155,14 @@ const GroupsContainer = () => {
   if (loading) {
     return <div>...loading</div>;
   }
-
-  return <GroupsCards groups={data} />;
+  console.log("data:", data);
+  console.log("groupsData:", groupsData);
+  return (
+    <>
+      {/* <div>{groupState}</div> */}
+      <GroupsCards groups={groupsData} addGroup={addGroup} />
+    </>
+  );
 };
 
 export default GroupsContainer;

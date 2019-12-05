@@ -44,8 +44,10 @@ export default function useApplicationData() {
       }
     }).then(response => {
       const token = response.data.token;
+      const id = response.data.user_id;
       if (response.data.status !== 401) {
         localStorage.setItem("token", token);
+        localStorage.setItem("user_id", id);
       }
       // console.log(window.localstorage.getItem("token"));
       return token;
@@ -68,8 +70,10 @@ export default function useApplicationData() {
       // }
     }).then(response => {
       const token = response.data.token;
+      const id = response.data.user_id;
       if (response.data.status !== 401) {
         localStorage.setItem("token", token);
+        localStorage.setItem("user_id", id);
       }
       return token;
     });
