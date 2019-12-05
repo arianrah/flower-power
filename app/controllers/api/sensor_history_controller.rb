@@ -21,6 +21,7 @@ class Api::SensorHistoryController < ApplicationController
     end
   end
   private
+
   def sensor_log_params
     params.require(:sensor_log).permit(:latitude, :longitude, :moisture, :sensor_id)
   end  

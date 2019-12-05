@@ -5,9 +5,10 @@ import Navbar from "../navbar/NavComponent";
 import Accordian from "./Accordian";
 import SensorInput from "./SensorInput";
 import DashboardComponent from "./DashboardComponent";
-import GroupsContainer from './GroupsContainer';
+import GroupsContainer from "./GroupsContainer";
 import Victory from "./Victory";
-import Sensor from "../sensor/Sensor"
+import Sensor from "../sensor/Sensor";
+import Chart from "../chart/Chart";
 
 import useVisualMode from "../../hooks/useVisualMode";
 import useApplicationData from "../../hooks/useApplicationData";
@@ -20,10 +21,9 @@ const SENSORADD = "SENSORADD";
 // export default function Groups(props) {
 
 export default function Dashboard() {
-
   const {
     plantAddDB,
-    sensorAddDB,
+    sensorAddDB
     // getResource,
     // loginDBCall,
     // userSignup,
@@ -46,7 +46,7 @@ export default function Dashboard() {
   function addSensor(sensorName) {
     sensorAddDB(sensorName);
   }
-  
+
   return (
     <Fragment>
       <Navbar dashboardPage={dashboardPage} plantPage={plantPage} />
@@ -56,9 +56,7 @@ export default function Dashboard() {
         </Fragment>
       )}
       {/* <Victory /> */}
-      {mode === PLANT && <Sensor
-      
-      />}
-    </Fragment>   
+      {mode === PLANT && <Chart />}
+    </Fragment>
   );
 }
