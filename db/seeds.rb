@@ -56,11 +56,19 @@ sensors= Sensor.create([
   {host:'339', gpio:'99456', user: users.first, sensor_type: sensor_types.second},
   {host:'350', gpio:'38856', user: users.first, sensor_type: sensor_types.first},
   {host:'330', gpio:'32456', user: users.third, sensor_type: sensor_types.first},
-
-
 ])
 
 
+
+SensorHistory.create(latitude: 49, longitude: 138.5, moisture: true, sensor_id: 2, created_at: '2019-12-05T00:04:04.152Z', updated_at: '2019-12-05T00:04:04.152Z')
+
+SensorHistory.create(latitude: 70, longitude: 230, moisture: false, sensor_id: 2, created_at: '2019-12-05T01:05:04.152Z', updated_at: '2019-12-05T01:05:04.152Z')
+
+SensorHistory.create(latitude: 12, longitude: 213, moisture: true, sensor_id: 2, created_at: '2019-12-05T01:05:09.152Z', updated_at: '2019-12-05T01:05:09.152Z')
+
+SensorHistory.create(latitude: 90, longitude: 90, moisture: false, sensor_id: 2, created_at: '2019-12-05T00:20:14.152Z', updated_at: '2019-12-05T00:20:14.152Z')
+
+SensorHistory.create(latitude: 1, longitude: 100, moisture: true, sensor_id: 2, created_at: '2019-12-05T12:20:20.152Z', updated_at: '2019-12-05T12:20:20.152Z')
 
 # GroupPlantsSensor.create(user: users.first, plant: plants1.first, sensor: sensors.first, group: groups.first)
 # GroupPlantsSensor.create(user: users.first, plant: plants1.second, sensor: sensors.first, group: groups.first)

@@ -1,32 +1,63 @@
-import React, { useState, useEffect, Fragment } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+
 import axios from "axios";
-import { Bar } from "react-chartjs-2"
+import { Bar } from "react-chartjs-2";
+
+const chartStyle = {
+  paddingTop: "100px",
+  backgroundColor: "#c3fae7"
+};
 
 const getResource = url => {
-  const [data, setData] = useState({labels: [], datasets: [{label: 'Duration of watering ', data: [], borderWidth: 1}]});
+  const [data, setData] = useState({
+    labels: [],
+    datasets: [
+      {
+        label: "Duration of watering",
+        data: [],
+        backgroundColor: "rgba(255,99,132,0.2)",
+        borderColor: "rgba(255,99,132,1)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)"
+      }
+    ]
+  });
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    console.log('starting')
+    console.log("starting");
     axios
       .get(url)
-      .then((res) => {
-        //format the data 
-        let chartData = {labels: [], datasets: [{label: 'Duration of watering ', data: [], borderWidth: 1}]};
+      .then(res => {
+        let chartData = {
+          labels: [],
+          datasets: [
+            {
+              label: "Duration of watering ",
+              backgroundColor: "rgba(255,99,132,0.2)",
+              borderColor: "rgba(255,99,132,1)",
+              borderWidth: 1,
+              hoverBackgroundColor: "rgba(255,99,132,0.4)",
+              hoverBorderColor: "rgba(255,99,132,1)",
+              data: []
+            }
+          ]
+        };
         console.log(res);
-        for(let row of res.data.data){
+        for (let row of res.data.data) {
           chartData.labels.push(row.created_at);
           chartData.datasets[0].data.push(row.duration);
         }
-        console.log('HERE is the stuff', chartData);
-        setData(chartData)
+
+        setData(chartData);
       })
-      .catch((err) => {
-        console.log('error', err)
-        setError(err)
+      .catch(err => {
+        console.log("error", err);
+        setError(err);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -34,75 +65,24 @@ const getResource = url => {
   return { data, error, loading };
 };
 
-const GroupTitle = styled.h1`
-  margin: 0;
-`;
-
-const GroupWrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-`;
-
-const GroupCardWrapper = styled.li`
-  list-style-type: none;
-  background-color: #ffffff;
-  margin-right: 15vw;
-  margin-left: 15vw;
-  margin-top: 10vh;
-  padding-top: 5vh;
-`;
-
-// const GroupCard = ({ group }) => (
-//   <>
-  
-//       <GroupTitle>{group.duration}</GroupTitle>
-//       <p>{group.created_at}</p>
-      
-     
-//  </>
- 
-//  );
- 
-//  const GroupsCards = ({ groups }) => {
-//    console.log('GROUPS' ,groups)
-//    return ( 
-//    <Fragment>
-//      <GroupWrapper>
-      
-//     {groups.data.map(group => (
-      
-//       <GroupCardWrapper key={`group_${group.id}`}>
-//         <GroupCard group={group} />
-
-//       </GroupCardWrapper>
-//     ))}
-    
-//     </GroupWrapper>
-//     </Fragment>
-//   )
-//   }  ;
-
-const Sensor = () => {
+const Chart = () => {
   const { data, error, loading } = getResource("/api/sensor-history");
-  
+
   if (error) {
     return <div>Oops</div>;
   }
-  
+
   if (loading) {
     return <div>...loading</div>;
   }
-  console.log("data",data.data)
 
   return (
-  <Bar data={data} />
+    <div>
+      <div style={chartStyle}>
+        <Bar data={data} redraw={true} />
+      </div>
+    </div>
   );
-  
 };
 
-export default Sensor;
-
-
+export default Chart;

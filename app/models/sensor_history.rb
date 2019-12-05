@@ -11,6 +11,8 @@ class SensorHistory < ApplicationRecord
 
     private
 
+  
+
     def get_pairs(sh)
       sh.to_a.drop_while { |x| !x.moisture }.slice_before{|x|x.moisture}.to_a
     end
