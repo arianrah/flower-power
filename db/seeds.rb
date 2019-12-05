@@ -60,17 +60,17 @@ sensors= Sensor.create([
 
 
 
-SensorHistory.create(latitude: 49, longitude: 138.5, moisture: false, sensor_id: 2,
+SensorHistory.create(latitude: 49, longitude: 138.5, moisture: false, sensor_id: sensors.first,
 created_at: '2019-12-05T21:05:04.152Z', updated_at: '2019-12-05T21:05:04.152Z' )
 
-SensorHistory.create(latitude: 70, longitude: 230, moisture: true, sensor_id: 2, created_at: '2019-12-05T01:04:04.152Z', updated_at: '2019-12-05T20:04:04.152Z')
+SensorHistory.create(latitude: 70, longitude: 230, moisture: true, sensor_id: sensors.first, created_at: '2019-12-05T01:04:04.152Z', updated_at: '2019-12-05T20:04:04.152Z')
 
 
-SensorHistory.create(latitude: 90, longitude: 90, moisture: false, sensor_id: 2, created_at: '2019-12-04T21:05:04.152Z', updated_at: '2019-12-04T21:05:04.152Z' )
+SensorHistory.create(latitude: 90, longitude: 90, moisture: false, sensor_id: sensors.first, created_at: '2019-12-04T21:05:04.152Z', updated_at: '2019-12-04T21:05:04.152Z' )
 
-SensorHistory.create(latitude: 12, longitude: 213, moisture: true, sensor_id: 2, created_at: '2019-12-04T01:04:04.152Z', updated_at: '2019-12-04T20:04:04.152Z')
+SensorHistory.create(latitude: 12, longitude: 213, moisture: true, sensor_id: sensors.first, created_at: '2019-12-04T01:04:04.152Z', updated_at: '2019-12-04T20:04:04.152Z')
 
-SensorHistory.create(latitude: 49, longitude: 138.5, moisture: true, sensor_id: 2,
+SensorHistory.create(latitude: 49, longitude: 138.5, moisture: false, sensor_id: sensors.first,
   created_at: '2019-12-03T21:05:04.152Z', updated_at: '2019-12-03T21:05:04.152Z' )
 
 

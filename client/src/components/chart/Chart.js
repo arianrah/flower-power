@@ -4,8 +4,7 @@ import axios from "axios";
 import { Bar } from "react-chartjs-2";
 
 const chartStyle = {
-  paddingTop: "100px",
-  backgroundColor: "#c3fae7"
+  paddingTop: "100px"
 };
 
 const getResource = url => {

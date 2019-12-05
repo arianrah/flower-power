@@ -5,16 +5,16 @@ const NavButton = styled.button`
   border: 0px solid #ffffff;
   padding: 8px
   width: 150px
-  color: #ffffff;
-
+  color: #C38D9E;
   font-size: 18px;
   font-weight: bold;
+  outline: 0;
 
-  &:hover {background-color: #ffffff;
+  :hover {
 color: #ff9192;
-}
-  &:active {outline: 0;
-    color: #ffffff;}
+};
+  :active {outline: 0;
+    color: #ffffff;};
 
 `;
 
