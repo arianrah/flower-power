@@ -4,7 +4,7 @@ class Api::SensorHistoryController < ApplicationController
 
   def index
     render :json => {
-   data: SensorHistory.to_durations(SensorHistory.all),
+   data: SensorHistory.to_durations(SensorHistory.all.order("created_at DESC")).take(10),
       status:200
     }
   end
