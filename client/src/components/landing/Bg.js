@@ -7,7 +7,9 @@ const Bg = styled.div`
   min-height: 100vh;
   max-width: 100vw;
   background-position: center top;
-  backgroud-size: contain;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-attachment: fixed;
 
   @media screen and (max-width: 500px) {

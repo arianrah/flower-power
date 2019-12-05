@@ -46,8 +46,8 @@ plants1 = Plant.create([
 groups= Group.create([
   {name: 'Kitchen', user: users.first},
   {name: 'Living Room', user: users.first},
-  {name: 'Outdoors', user: users.second},
-  {name: 'Dining Room', user: users.second}
+  {name: 'Outdoors', user: users.third},
+  {name: 'Dining Room', user: users.third}
 ])
 
 sensors= Sensor.create([
@@ -60,39 +60,18 @@ sensors= Sensor.create([
 
 
 
-SensorHistory.create(latitude: 49, longitude: 138.5, moisture: true, sensor_id: 2, created_at: '2019-12-05T00:04:04.152Z', updated_at: '2019-12-05T00:04:04.152Z')
+SensorHistory.create(latitude: 49, longitude: 138.5, moisture: false, sensor_id: 2,
+created_at: '2019-12-05T21:05:04.152Z', updated_at: '2019-12-05T21:05:04.152Z' )
 
-SensorHistory.create(latitude: 70, longitude: 230, moisture: false, sensor_id: 2, created_at: '2019-12-05T01:05:04.152Z', updated_at: '2019-12-05T01:05:04.152Z')
-
-SensorHistory.create(latitude: 12, longitude: 213, moisture: true, sensor_id: 2, created_at: '2019-12-05T01:05:09.152Z', updated_at: '2019-12-05T01:05:09.152Z')
-
-SensorHistory.create(latitude: 90, longitude: 90, moisture: false, sensor_id: 2, created_at: '2019-12-05T00:20:14.152Z', updated_at: '2019-12-05T00:20:14.152Z')
-
-SensorHistory.create(latitude: 1, longitude: 100, moisture: true, sensor_id: 2, created_at: '2019-12-05T12:20:20.152Z', updated_at: '2019-12-05T12:20:20.152Z')
-
-GroupPlantsSensor.create(user: users.first, plant: plants1.first, sensor: sensors.first, group: groups.first)
-GroupPlantsSensor.create(user: users.first, plant: plants1.second, sensor: sensors.first, group: groups.first)
+SensorHistory.create(latitude: 70, longitude: 230, moisture: true, sensor_id: 2, created_at: '2019-12-05T01:04:04.152Z', updated_at: '2019-12-05T20:04:04.152Z')
 
 
-GroupPlantsSensor.create(user: users.first, plant: plants1.third, sensor: sensors.second, group: groups.second)
-GroupPlantsSensor.create(user: users.first, plant: plants1.fourth, sensor: sensors.second, group: groups.second)
-GroupPlantsSensor.create(user: users.first, plant: plants1.fifth, sensor: sensors.third, group: groups.second)
+SensorHistory.create(latitude: 90, longitude: 90, moisture: false, sensor_id: 2, created_at: '2019-12-04T21:05:04.152Z', updated_at: '2019-12-04T21:05:04.152Z' )
 
+SensorHistory.create(latitude: 12, longitude: 213, moisture: true, sensor_id: 2, created_at: '2019-12-04T01:04:04.152Z', updated_at: '2019-12-04T20:04:04.152Z')
 
-
-GroupPlantsSensor.create(user: users.second, plant: plants2.first, group: groups.third)
-GroupPlantsSensor.create(user: users.second, plant: plants2.second, sensor: sensors.fourth, group: groups.third)
-GroupPlantsSensor.create(user: users.second, plant: plants2.third, sensor: sensors.fourth, group: groups.third)
-
-
-
-GroupPlantsSensor.create(user: users.second, plant: plants2.fourth, sensor: sensors.fifth, group: groups.fourth)
-GroupPlantsSensor.create(user: users.second, plant: plants2.fifth, sensor: sensors.fifth, group: groups.fourth)
-
-
-
-
-
+SensorHistory.create(latitude: 49, longitude: 138.5, moisture: true, sensor_id: 2,
+  created_at: '2019-12-03T21:05:04.152Z', updated_at: '2019-12-03T21:05:04.152Z' )
 
 
 

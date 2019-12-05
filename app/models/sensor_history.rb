@@ -14,7 +14,7 @@ class SensorHistory < ApplicationRecord
   
 
     def get_pairs(sh)
-      sh.to_a.drop_while { |x| !x.moisture }.slice_before{|x|x.moisture}.to_a
+      sh.to_a.drop_while { |x|!x.moisture }.slice_before{|x|x.moisture}.to_a
     end
 
     def make_durations(pairs)
@@ -32,6 +32,3 @@ class SensorHistory < ApplicationRecord
   end
 
 end
-
-
-# SensorHistory.to_durations(SensorHistory.all)
