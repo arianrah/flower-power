@@ -4,7 +4,8 @@ class Api::SensorHistoryController < ApplicationController
 
   def index
     render :json => {
-      data: SensorHistory.all
+   data: SensorHistory.to_durations(SensorHistory.all),
+      status:200
     }
   end
   def create
@@ -21,6 +22,7 @@ class Api::SensorHistoryController < ApplicationController
     end
   end
   private
+
   def sensor_log_params
     params.require(:sensor_log).permit(:latitude, :longitude, :moisture, :sensor_id)
   end  

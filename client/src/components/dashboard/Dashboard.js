@@ -8,6 +8,7 @@ import DashboardComponent from "./DashboardComponent";
 import GroupsContainer from './GroupsContainer';
 import Victory from "./Victory";
 import Sensor from "../sensor/Sensor"
+import Chart from "../chart/Chart"
 
 import useVisualMode from "../../hooks/useVisualMode";
 import useApplicationData from "../../hooks/useApplicationData";
@@ -56,7 +57,7 @@ export default function Dashboard() {
         </Fragment>
       )}
       {/* <Victory /> */}
-      {mode === PLANT && <Sensor
+      {mode === PLANT && <Chart
       
       />}
     </Fragment>   

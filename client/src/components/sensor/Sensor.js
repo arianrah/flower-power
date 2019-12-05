@@ -43,9 +43,9 @@ const GroupCardWrapper = styled.li`
 const GroupCard = ({ group }) => (
   <>
   
-      <GroupTitle>{group.sensor_id}</GroupTitle>
+      <GroupTitle>{group.duration}</GroupTitle>
  
-      
+     
      
  </>
  
